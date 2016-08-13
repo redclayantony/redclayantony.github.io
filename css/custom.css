@@ -1,0 +1,50 @@
+/* Body Styling properties example */
+body {
+	font-family: Garamond, ‘Book Antiqua’, Palatino, serif;
+	font-size: 16px;
+}
+#map {
+    background:white;display: block;
+    position:absolute;
+    height:auto;
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+    margin-top:50px; /* adjust top margin to your header height */
+}
+h1 {
+	font-style: oblique;
+	font-size:48px;
+}
+
+h3 {
+	font-family: 'Franklin Gothic', sans-serif;
+	font-size:24px;
+}
+
+a {
+	color: #C26941;
+}
+
+a:hover {
+	color: #333333;
+}
+.navbar-inverse .navbar-brand {
+    color: #ffffff;
+    font-size: 36px;
+}
+
+.navbar-inverse {
+	background-color: #10756A;
+	border-color: #666666;
+	-webkit-box-shadow: 1px 1px 7px #000;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+	color: #FF9C70;
+}
+
+.navbar-inverse .navbar-nav>li>a:hover {
+	color: #999999;
+}
