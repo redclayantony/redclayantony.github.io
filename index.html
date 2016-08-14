@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset=utf-8 />
-<title>Trek Peru</title>
+<title>Kay Pacha</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
 <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
@@ -24,16 +24,28 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Trek Peru</a>
+                <a class="navbar-brand" href="#">Kay Pacha</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">Regions</a>
+                        <div class="dropdown">
+                          <button class="dropbtn">Regions</button>
+                          <div class="dropdown-content">
+                            <a href="cusco.html">Cusco</a>
+                            <a href="#">Huaraz</a>
+                            <a href="#">Arequipa</a>
+                          </div>
+                         </div>
                     </li>
                     <li>
-                        <a href="#">Treks</a>
+                        <div class="dropdown">
+                          <button class="dropbtn">Treks</button>
+                          <div class="dropdown-content">
+                            <a href="ausangate.html">Ausangate</a>
+                            <a href="#">Huaraz</a>
+                            <a href="#">Arequipa</a>
                     </li>
                     <li>
                         <a href="#">Contact</a>
@@ -51,7 +63,7 @@
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoicnVzc2x5b244IiwiYSI6IjBSaDVoeW8ifQ.UMzpeudvSJ3dHxAtKiakFg';
 var map = L.mapbox.map('map', null, {
-  maxZoon:18
+  maxZoom:18
 }).setView([-9.6790, -75.2161], 5);
 var layers = {
       Streets: L.mapbox.tileLayer('mapbox.streets'),
@@ -61,7 +73,12 @@ var layers = {
 
   layers.Streets.addTo(map);
   L.control.layers(layers).addTo(map);
-  
+// Add machu
+ var machupicchuLayer = null;
+ 
+$.getJSON("data/machu.geojson",function(data){
+    machupicchuLayer = L.geoJson(data, {color: '#ffffff', weight: 3, dashArray: '5,6'}).addTo(map);
+});  
   // Null variable that will hold department layer
 var departmentLayer = null;
 
@@ -73,14 +90,14 @@ $.getJSON("data/Department.geojson",function(data){
 function style() {
     return {
         fillColor: '#ffd991',
-        fillOpacity: 0.3,
+        fillOpacity: 0,
         weight: 1,
         opacity: 0.4,
         color: '#75561c',
         dashArray: '3'
     };
 }
-  var machupicchuLayer = null;
+ 
 
 // Add anp 
 $.getJSON("data/anp.geojson",function(data){
@@ -96,11 +113,8 @@ function anpstyle() {
         dashArray: '3'
     };
 }
-// Add machu 
-$.getJSON("data/machu.geojson",function(data){
-    machupicchuLayer = L.geoJson(data, {color: 'white', weight: 3, dashArray: '5,6'}).addTo(map);
-});
 </script>
+<p>Insert hikes here</p>
 </body>
 </html>
 <!-- mapbox://styles/mapbox/outdoors-v9-->
