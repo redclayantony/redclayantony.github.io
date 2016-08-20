@@ -5,17 +5,20 @@
 <title>Kay Pacha</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
+<!--Need this to make geojson load-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
 <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="css/custom.css" rel="stylesheet">
-
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="css/custom.css" rel="stylesheet">
 </head>
+
 <body>
- <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
+ <div class="wrapper">
+  <header>
+   <nav class="navbar navbar-inverse role="navigation">
+        <div class="container">
           <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -33,9 +36,12 @@
                         <div class="dropdown">
                           <button class="dropbtn">Regions</button>
                           <div class="dropdown-content">
-                            <a href="cusco.html">Cusco</a>
-                            <a href="#">Huaraz</a>
-                            <a href="#">Arequipa</a>
+                           <a href="amazonas.html">Amazonas</a>
+                            <a href="ancash.html">Ancash</a>
+                            <a href="arequipa.html">Arequipa</a>
+                            <a href="cajamarca.html">Cajamarca</a>
+                            <a href="#" class="">Cusco</a>
+                            <a href="junin.html">Junin</a>
                           </div>
                          </div>
                     </li>
@@ -44,11 +50,14 @@
                           <button class="dropbtn">Treks</button>
                           <div class="dropdown-content">
                             <a href="ausangate.html">Ausangate</a>
-                            <a href="#">Huaraz</a>
-                            <a href="#">Arequipa</a>
+                            <a href="colcaCanyon.html">Colca Canyon</a>
+                            <a href="santaCruz.html">Santa Cruz</a>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        <div class="dropdown">
+                          <button class="dropbtn">About</button>
+                          <div class="dropdown-content">
+                            <a href="#">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -56,35 +65,63 @@
         </div>
         <!-- /.container -->
     </nav>
-<div id='map'style="width: 100%; height: 600px;"></div>
-
-<!--Need this to make geojson load-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+   <div class="mapInstructions">Click on any Department in the map to see which hikes are mapped!</div>
+  </header>
+<div id='map'></div>
+<div id="credits">
+ <p>Enter text here
+  
+ </p>
+</div>
+</div> <!--wrapper-->
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoicnVzc2x5b244IiwiYSI6IjBSaDVoeW8ifQ.UMzpeudvSJ3dHxAtKiakFg';
 var map = L.mapbox.map('map', null, {
   maxZoom:18
-}).setView([-9.6790, -75.2161], 5);
+}).setView([-9.3651, -73.73], 5);
 var layers = {
-      Streets: L.mapbox.tileLayer('mapbox.streets'),
       Outdoors: L.mapbox.tileLayer('mapbox.outdoors'),
+      Streets: L.mapbox.tileLayer('mapbox.streets'),
       Satellite: L.mapbox.tileLayer('mapbox.satellite')
   };
 
-  layers.Streets.addTo(map);
+  layers.Outdoors.addTo(map);
   L.control.layers(layers).addTo(map);
-// Add machu
- var ausangateLayer = null;
+    
+var ausangateLayer = null;
  
 $.getJSON("data/ausangateTrek.geojson",function(data){
-    ausangateLayer = L.geoJson(data, {color: '#aa6e8e', weight: 5}).addTo(map);
+    ausangateLayer = L.geoJson(data, {style: ausangatestyle}).addTo(map);
     map.fitBounds(ausangateLayer.getBounds());
 });
+function ausangatestyle() {
+    return {
+        weight: 3,
+        opacity: 1,
+        color: '#aa6e8e',
+        dashArray: '1'
+    };
+}
 var ausangatePOILayer = null;
  
 $.getJSON("data/ausangatePOI.geojson",function(data){
-    ausangatePOILayer = L.geoJson(data, {color: '#aa6e8e'}).addTo(map);
+    ausangatePOILayer = L.geoJson(data, {color: '#aa6e8e',
+            pointToLayer: function (feature, latlng) {
+            var marker = L.marker(latlng,{icon: campIcon});
+            return marker;
+        }
+    }).addTo(map);
 });
+// Icons Here
+// camp Icon
+var campIcon = L.icon({
+	iconUrl: 'icons/campsite-15.svg',
+	shadowUrl: 'images/rodent_shadow.png',
+	iconSize: [16,16],
+	iconAnchor: [18,18],
+	popupAnchor: [0,-6]
+});
+
 // Add anp 
 $.getJSON("data/anp.geojson",function(data){
     anpLayer = L.geoJson(data, {style: anpstyle}).addTo(map);
@@ -100,7 +137,8 @@ function anpstyle() {
     };
 }
 </script>
-<p>Insert hikes here</p>
+<img src="image/ausangatefinalweb.svg" width=100% height=1000">
+</img>
 </body>
 </html>
 <!-- mapbox://styles/mapbox/outdoors-v9-->
