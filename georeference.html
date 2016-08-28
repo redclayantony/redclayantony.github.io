@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Georeferencing As-Buit Drawings</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/one-page-wonder.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Home</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="resume.html">CV</a>
+                    </li>
+                    <li>
+                        <a href="kaypacha.html">Web Mapping</a>
+                    </li>
+                    <li>
+                        <a href="maps.html">Maps</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About Me</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Full Width Image Header -->
+    <header class="header-image1">
+        <div class="headline">
+            <div class="container">
+                <h1>Georeferencing As-Builts & Digitizing Utilities</h1>
+                <h2>Mole Pier, Naval Air Station Key West, FL</h2>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <hr class="featurette-divider">
+
+        <!-- First Featurette -->
+        <div class="featurette" id="about">
+            <img class="featurette-image img-circle img-responsive pull-right" src="img/molepier.jpg">
+            <h2 class="featurette-heading">
+                <span class="text-muted"></span>
+            </h2>
+            <p class="lead">One of the main projects I have worked on in Key West is the update of all underground utilities at the Mole Pier, one of the deepest ports in the city where large warships and the occasional cruise ship can dock. This project was my first introduction to a lot of different utility datasets including things like electric transformers, back flow preventers and sewage lift stations. I had seen these things before, but really had no idea what purpose they served.  Now, thanks to this project, I can not only recognize them in the field, but also draw a mental map of the underground lines, and how they connect and the areas that they serve.</p>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- Second Featurette -->
+        <div class="featurette" id="services">
+            <img class="featurette-image img-circle img-responsive pull-left" src="img/Georeferencing2.png">
+            <h2 class="featurette-heading">
+                <span class="text-muted"></span>
+            </h2>
+            <p class="lead">There are a ton of underground utilities that lead out to the pier, but the current data only had electric and communication lines.  The Navy has not been the best at keeping track of their previous projects at the pier, but I was able to track down some scanned As-Built drawings from 1984. Without the original CAD files I was left no other option but to georeference the As-Builts and heads-up digitize the utility lines and point features visible in the drawings.</p>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- Third Featurette -->
+        <div class="featurette" id="contact">
+            <img class="featurette-image img-circle img-responsive pull-right" src="img/molefinal.png">
+            <h2 class="featurette-heading">
+                <span class="text-muted"></span>
+            </h2>
+            <p class="lead">Since the drawings were projected in State Plane, I first had to convert all the exisitng data from UTM. Next, I had to set the control points. The drawings had some locations with coordinates on them, but using these as my control points did not create a good overlay so instead I matched up features such as manholes that were visible in both the CAD and aerial imagery. In the end it produced a good enough product for the local Planners to be able to identify which assets might be affected as new projects are planned in and around the pier. (Image sources: US Navy)</p>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Russell Lyon 2016</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

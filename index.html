@@ -1,25 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset=utf-8 />
-<title>Kay Pacha</title>
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
-<!--Need this to make geojson load-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
-<!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<!-- Custom CSS -->
-<link href="css/custom.css" rel="stylesheet">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Russell Lyon</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/1-col-portfolio.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
 </head>
 
 <body>
- <div class="wrapper">
-  <header>
-   <nav class="navbar navbar-inverse role="navigation">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
-          <!-- Brand and toggle get grouped for better mobile display -->
+            <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -27,37 +39,22 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Kay Pacha</a>
+                <a class="navbar-brand" href="index.html">Home</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <div class="dropdown">
-                          <button class="dropbtn">Regions</button>
-                          <div class="dropdown-content">
-                           <a href="amazonas.html">Amazonas</a>
-                            <a href="ancash.html">Ancash</a>
-                            <a href="arequipa.html">Arequipa</a>
-                            <a href="cajamarca.html">Cajamarca</a>
-                            <a href="#" class="">Cusco</a>
-                            <a href="junin.html">Junin</a>
-                          </div>
-                         </div>
+                        <a href="resume.html">CV</a>
                     </li>
                     <li>
-                        <div class="dropdown">
-                          <button class="dropbtn">Treks</button>
-                          <div class="dropdown-content">
-                            <a href="ausangate.html">Ausangate</a>
-                            <a href="colcaCanyon.html">Colca Canyon</a>
-                            <a href="santaCruz.html">Santa Cruz</a>
+                        <a href="kaypacha.html">Web Mapping</a>
                     </li>
                     <li>
-                        <div class="dropdown">
-                          <button class="dropbtn">About</button>
-                          <div class="dropdown-content">
-                            <a href="#">Contact</a>
+                        <a href="maps.html">Maps</a>
+                    </li>
+                    <li>
+                        <a href="about.html">About Me</a>
                     </li>
                 </ul>
             </div>
@@ -65,51 +62,150 @@
         </div>
         <!-- /.container -->
     </nav>
-   <div class="mapInstructions">Click on any Department in the map to see which hikes are mapped!</div>
-  </header>
-<div id='map'></div>
-<div id="credits">
- <p>Enter text here
-  
- </p>
-</div>
-</div> <!--wrapper-->
-<script>
-L.mapbox.accessToken = 'pk.eyJ1IjoicnVzc2x5b244IiwiYSI6IjBSaDVoeW8ifQ.UMzpeudvSJ3dHxAtKiakFg';
-var map = L.mapbox.map('map', null, {
-  maxZoom:18
-}).setView([-9.3651, -73.73], 5);
-var layers = {
-      Outdoors: L.mapbox.tileLayer('mapbox.outdoors'),
-      Streets: L.mapbox.tileLayer('mapbox.streets'),
-      Satellite: L.mapbox.tileLayer('mapbox.satellite')
-  };
 
-  layers.Outdoors.addTo(map);
-  L.control.layers(layers).addTo(map);
-    
-// Create a global variable set to null that can hold our data
-var departmentLayer = null;
+    <!-- Page Content -->
+    <div class="container">
 
-// Add department polygons
-$.getJSON("data/Department.geojson",function(data){
-    departmentLayer = L.geoJson(data, {style: style,
-     onEachFeature: function (feature, layer) {
-      layer.bindPopup(feature.properties.D_NOMB);
-     }
-     }).addTo(map);
-});
-// Set style function that sets fill color 
-function style() {
-    return {
-        fillOpacity: 0,
-        weight: 1,
-        opacity: 0.4,
-        color: '#75561c',
-        dashArray: '3'
-    };
-}
-</script>
+        <!-- Page Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Russell Lyon
+                    <small>GIS Analyst & Developer</small>
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Project One -->
+        <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="img-responsive" src="img/Georeferencing.png" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>Georeferencing As-Built Drawings</h3>
+                <h4>Mole Pier, Key West</h4>
+                <p>One of the main projects I have worked on in Key West is the update of all underground utilities at the Mole Pier, one of the deepest moorings in the city where large warships and the occasional cruise ship dock. This project...</p>
+                <a class="btn btn-primary" href="georeference.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Project 2 -->
+        <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="img-responsive" src="img/qgistrain.jpg" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>SERNANP QGIS Training Workshop</h3>
+                <h4>Lima & Cusco, Peru</h4>
+                <p>After 6 months of sitting behind a computer at Peru’s <a href="http://www.sernanp.gob.pe/">Servicio Nacional de Áreas Protegidas por el Estado (SERNANP)</a> office in downtown Lima I was longing for a chance to get out of the city and explore some of what this country had to offer. My main duties as an Environmental Information Management Specialist involved...</p>
+                <a class="btn btn-primary" href="qgis_train.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Project 3 -->
+        <div class="row">
+
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="img-responsive" src="img/thesis.png" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>Hydrologic Modeling with AGWA</h3>
+                <h4>Tucson, Arizona</h4>
+                <p>For four years I worked as a Research Associate with the University of Arizona and the Agricultural Research Station in Tucson, Arizona. My job was to use the <a href= "http://www.tucson.ars.ag.gov/agwa/">Automated Geospatial Watershed Assessment (AGWA)</a> tool to run hydrologic simulations on various watershed in each of desert ecoysystems in the Southwest US... </p>
+                <a class="btn btn-primary" href="thesis.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Project 4 -->
+        <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="img-responsive" src="img/wallow.png" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>Burned Area Emergency Response AGWA Training</h3>
+                <h4>Española, New Mexico</h4>
+                <p>Another project that I was involved with while at the ARS was training the <a href="http://www.fs.fed.us/biology/watershed/burnareas/">Burned Area Emergency Response (BAER)</a> Team in how to use AGWA to predict which burned areas were at hsigest risk of flooding due to vegetation loss...</p>
+                <a class="btn btn-primary" href="baer.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+<!-- Project 5 -->
+        <div class="row">
+            <div class="col-md-7">
+                <a href="#">
+                    <img class="img-responsive" src="img/garden.jpg" alt="">
+                </a>
+            </div>
+            <div class="col-md-5">
+                <h3>Natural Resource Specialist</h3>
+                <h4>Yamparáez, Bolivia</h4>
+                <p>Mr. Lyon successfully completed training and was sworn in as a Natural Resource/Environmental Education Volunteer on April 13th, 2007.  He was assigned to the environmental/natural disaster office within the Mayor’s Office in the Municipality of Yamparáez, Chuquisaca, Bolivia...</p>
+                <a class="btn btn-primary" href="bolivia.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Pagination -->
+        <div class="row text-center">
+            <div class="col-lg-12">
+                <ul class="pagination">
+                    <li class="active">
+                        <a href="#">1</a>
+                    </li>
+                    <li>
+                        <a href="page2.html">2</a>
+                    </li>
+                    <li>
+                        <a href="page2.html">&raquo;</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Russell Lyon 2016</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
 </body>
+
 </html>
-<!-- mapbox://styles/mapbox/outdoors-v9-->
