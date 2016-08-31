@@ -27,7 +27,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Kay Pacha</a>
+                <a class="navbar-brand" href="kaypacha.html">Kay Pacha</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -36,12 +36,12 @@
                         <div class="dropdown">
                           <button class="dropbtn">Regions</button>
                           <div class="dropdown-content">
-                           <a href="amazonas.html">Amazonas</a>
+                           <!--<a href="amazonas.html">Amazonas</a>
                             <a href="ancash.html">Ancash</a>
                             <a href="arequipa.html">Arequipa</a>
-                            <a href="cajamarca.html">Cajamarca</a>
-                            <a href="#" class="">Cusco</a>
-                            <a href="junin.html">Junin</a>
+                            <a href="cajamarca.html">Cajamarca</a>-->
+                            <a href="cusco.html" class="">Cusco</a>
+                            <!--<a href="junin.html">Junin</a>-->
                           </div>
                          </div>
                     </li>
@@ -50,8 +50,8 @@
                           <button class="dropbtn">Treks</button>
                           <div class="dropdown-content">
                             <a href="ausangate.html">Ausangate</a>
-                            <a href="colcaCanyon.html">Colca Canyon</a>
-                            <a href="santaCruz.html">Santa Cruz</a>
+                            <a href="#">Classic Inca Trail</a>
+                            <a href="#">Salkantay</a>
                     </li>
                     <li>
                         <div class="dropdown">
@@ -92,7 +92,6 @@ var ausangateLayer = null;
  
 $.getJSON("data/ausangateTrek.geojson",function(data){
     ausangateLayer = L.geoJson(data, {style: ausangatestyle}).addTo(map);
-    map.fitBounds(ausangateLayer.getBounds());
 });
 function ausangatestyle() {
     return {
@@ -107,16 +106,17 @@ var ausangatePOILayer = null;
 $.getJSON("data/ausangatePOI.geojson",function(data){
     ausangatePOILayer = L.geoJson(data, {color: '#aa6e8e',
             pointToLayer: function (feature, latlng) {
-            var marker = L.marker(latlng,{icon: campIcon});
+            var marker = L.marker(latlng,{icon: markerIcon});
             return marker;
         }
     }).addTo(map);
+    map.fitBounds(ausangatePOILayer.getBounds());
 });
 // Icons Here
-// camp Icon
-var campIcon = L.icon({
-	iconUrl: 'icons/campsite-15.svg',
-	shadowUrl: 'images/rodent_shadow.png',
+// marker Icon
+var markerIcon = L.icon({
+	iconUrl: 'icons/marker-11.svg',
+	shadowUrl: 'icons/marker-11.svg',
 	iconSize: [16,16],
 	iconAnchor: [18,18],
 	popupAnchor: [0,-6]
