@@ -83,7 +83,7 @@
                 <hr>
 
                 <!-- Post Content -->
-                <p class="lead">Recently, I was asked to determine the height for all the buildings near the airfield at Boca Chica. I had seen some LiDAR data from 2012, but as far as I knew it really had been used for anything. Once I started looking at the  data I realized it had only been processed to create a Bare Earth surface elevation raster, but nothing with the First Retun data points. ESRI had some <a hreaf=" http://desktop.arcgis.com/en/arcmap/latest/extensions/3d-analyst/3d-buildings-obtaining-elevation-information-for-building-footprints.htm">guidance</a> that looked pretty straight-forward so I decided to give it a shot.
+                <p class="lead">One of the most important things to be aware of when working near an airfield is the height of the buildings and structures on or near the flight line. There are obstruction height regulations on any features that is within a certain distance to the airfield that if aren’t observed can shut down of operations pretty quick. I have used LiDAR data before to determine vegetation height so I knew it wouldn’t be hard to do the same for the buildings at my installation. We had some LiDAR data had been flown relatively recently but none of the processed files were loading properly so I had to start from scratch with the raw .las files.</p>
                   
                 <hr>
                 
@@ -92,7 +92,7 @@
                 
                 <hr>
                 
-                <p class="lead">First I used the First Return data to create a LAS dataset file (.lasd) to store all the .las files in one layer using ArcGIS's Create LAS Dataset geoprocessing tool. Next, I created a raster representing the surface elevation including the buildings using the LAS Dataset to Raster tool. I made sure to choose MAXIMUM for the interpolation type, because most of my buildings have pitched roofs and I wanted to represent the tallest parts of each building. I then repeated this process, but used the Bare Earth return data instead so that I would have a raster that represented the height of the ground excluding the buildings.</p>
+                <p class="lead">First I did a little research and found <a hreaf=" http://desktop.arcgis.com/en/arcmap/latest/extensions/3d-analyst/3d-buildings-obtaining-elevation-information-for-building-footprints.htm">this</a> guidance from ESRI that I used as a reference to make sure I was doing everything correctly. My first step was to create a LAS dataset file (.lasd) to make it easier to access the individual .las files using ArcGIS's Create LAS Dataset geoprocessing tool. Once that was created I used the dataset file to create both a Digital Surface Model (DSM) using the first return points and a Digital Elevation Model (DEM) using the bare earth return points. Subtracting the DEM values from the DSM would give me a height of each pixel, but I was only interested in the height of my buildings, so I needed a way to extract the heights of just these features.</p>
         
                 <hr>
 
@@ -102,7 +102,8 @@
                 <hr>
                 
                 <!-- Post Content -->
-                <p class="lead">Next, I brought in the building footprints that I would append my height information to. I employed the Create Ranfom Points tool confined to my footprints to create 20 points within each polygon at a minimum of 1 meter from each other.  </p>
+                <p class="lead">To do this I brought in my building and structure footprint vector file and used the Create Random Points tool to to create 20 random points within each polygon with a minimum spacing of 1-meter, the same as my LiDAR data resolution. From there I used the Add Surface Information tool and the DSM raster to determine the maximum elevation for each point. Next, I use the Summary Statistics tool can calculate the average of all the points within each building footprint in a seperate table.
+                </p>
                 
                 <hr>
                 
@@ -111,7 +112,7 @@
                 
                 <hr>
               
-                <p class="lead">Next, I used the Add Surface Information tool and the First Return raster to determine the elevation of each point. Again, I repeated this step using the Bare Earth raster as well so that I could calculate the building height. Then I used the Summary Statistics tool to calculate the average of all the points within each building footprint for both Bare Earth and First Return rasters in a seperate table.  The final step was to take the difference between the two elevations to determine my building height.</p>
+                <p class="lead">I then repeated the Add Surface Information step, but this time using the DEM to create an additional table with the ground surface heights. Finally, I merged the two  tables with the original footprint vector, added a new field and calculated the difference between DSM and DEM elevations to get my building height.</p>
                 
                 <hr>
 
@@ -120,7 +121,7 @@
                 
                 <hr>
                 
-                <p class="lead">As a bonus I joined the table back to the footprints layer and opened it in ArcScene and setup the extrusion based on height to give them a 3-Dimensional shape. And that was it, with the right data and a little analysis I determined my building heights and created a 3-D representation of the area neaar the airfield.</p>
+                <p class="lead">As a bonus I joined the table back to the footprints layer and opened it in ArcScene and setup the extrusion based on height to create a 3-D visual representation of our buildings. And that was pretty much it. In less than an hour I had my building heights and could demonstrate that we were indeed in compliance.</p>
                 
                 <hr>
 
