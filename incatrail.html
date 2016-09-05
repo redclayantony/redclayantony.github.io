@@ -71,8 +71,7 @@
   </header>
 <div id='map'></div>
 <div id="credits">
- <p>
-Classic Inca Trail to Machu Picchu<br><br>
+ <p>Classic Inca Trail to Machu Picchu<br><br>
 
 
 Trekkers normally take four or five days to complete the "Classic Inca Trail" but a two-day trek from Km 104 is also possible.
@@ -121,9 +120,7 @@ Cusco stands at 3,200 metres and is already significantly higher than Machu Picc
 
 Starting at 2,600 metres, the trail ascends to 3,300 metres on the first day. The second day ascends over Dead Woman's pass- the highest point on the Inca Trail at 4,200 metres. This is the most dangerous point in terms of altiude sickness, however, you do not spend long at this altitude and by the afternoon you'll be back at 3,600 metres.
 
-The trail only descends from this point until you reach Machu Picchu at 2,430 metres.
-
-</p>
+The trail only descends from this point until you reach Machu Picchu at 2,430 metres.</p>
 </div>
 </div> <!--wrapper-->
 <script>
@@ -144,7 +141,6 @@ var incaTrailLayer = null;
  
 $.getJSON("data/classicincaTrail.geojson",function(data){
     incaTrailLayer = L.geoJson(data, {style: incaTrailstyle}).addTo(map);
-    map.fitBounds(incaTrailLayer.getBounds());
 });
 function incaTrailstyle() {
     return {
@@ -176,6 +172,8 @@ $.getJSON("data/machuPOI.geojson",function(data){
            layer.bindLabel(feature.properties.NAME);
         }
      }).addTo(map);
+    
+    map.fitBounds(machuPOILayer.getBounds());
 });
     
 
@@ -187,7 +185,7 @@ function anpstyle() {
     return {
         fillColor: '#107511',
         fillOpacity: 0,
-        weight: 5,
+        weight: 2,
         opacity: 0.4,
         color: '#107511',
         dashArray: '3'
