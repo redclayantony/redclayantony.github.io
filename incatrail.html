@@ -139,7 +139,7 @@ var layers = {
     
 var incaTrailLayer = null;
  
-$.getJSON("data/classicincaTrail.geojson",function(data){
+$.getJSON("data/classicIncaTrail.geojson",function(data){
     incaTrailLayer = L.geoJson(data, {style: incaTrailstyle}).addTo(map);
 });
 function incaTrailstyle() {
