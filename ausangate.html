@@ -7,6 +7,7 @@
 <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
 <!--Need this to make geojson load-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="js/leaflet.label.js"></script>
 <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -17,6 +18,7 @@
 <body>
  <div class="wrapper">
   <header>
+   <script src="js/leaflet.defaultextent.js"></script>
    <nav class="navbar navbar-inverse role="navigation">
         <div class="container">
           <!-- Brand and toggle get grouped for better mobile display -->
@@ -50,7 +52,7 @@
                           <button class="dropbtn">Treks</button>
                           <div class="dropdown-content">
                             <a href="ausangate.html">Ausangate</a>
-                            <a href="#">Classic Inca Trail</a>
+                            <a href="incatrail.html">Classic Inca Trail</a>
                             <a href="#">Salkantay</a>
                     </li>
                     <li>
@@ -65,11 +67,12 @@
         </div>
         <!-- /.container -->
     </nav>
-   <div class="mapInstructions">Click on any Department in the map to see which hikes are mapped!</div>
+   <div class="mapInstructions">El Camino del Apu Ausangate</div>
   </header>
 <div id='map'></div>
 <div id="credits">
- <p>Cusco, Arequipa, Huaraz, Junin, Amazonia, Lima, Ica, etc</p>
+ <p>Ausangate or Auzangate (in hispanicized spellings) is a mountain of the Willkanuta mountain range in the Andes of Peru. With an elevation of 6,384 metres it is situated around 100 kilometres southeast of Cusco in the Cusco Region, Canchis Province, Pitumarca District, and in the Quispicanchi Province, Ocongate District. The mountain has significance in Incan mythology. Every year the Quyllur Rit'i (Quechua for "star snow") festival which attracts thousands of Quechua pilgrims is celebrated about 20 km north of the Ausangate at the mountain Qullqipunku. It takes place one week before the Corpus Christi feast.
+The region is inhabited by llama and alpaca herding communities, and constitutes one of the few remaining pastoralist societies in the world. High mountain trails are used by these herders to trade with agricultural communities at lower elevations. Currently, one of these trails, "the road of the Apu Ausangate", is one of the most renowned treks in Peru.</p>
 </div>
 </div> <!--wrapper-->
 <script>
@@ -99,26 +102,31 @@ function ausangatestyle() {
         dashArray: '1'
     };
 }
+
+// marker Icon
+var markerIcon = L.icon({
+	iconUrl: 'icons/circle-11.svg',
+	shadowUrl: 'icons/circle-11.svg',
+	iconSize: [5,5],
+	iconAnchor: [18,18],
+	popupAnchor: [0,-6]
+});
+
 var ausangatePOILayer = null;
- 
+
 $.getJSON("data/ausangatePOI.geojson",function(data){
     ausangatePOILayer = L.geoJson(data, {color: '#aa6e8e',
             pointToLayer: function (feature, latlng) {
             var marker = L.marker(latlng,{icon: markerIcon});
             return marker;
-        }
-    }).addTo(map);
-    map.fitBounds(ausangatePOILayer.getBounds());
-});
-// Icons Here
-// marker Icon
-var markerIcon = L.icon({
-	iconUrl: 'icons/marker-11.svg',
-	shadowUrl: 'icons/marker-11.svg',
-	iconSize: [16,16],
-	iconAnchor: [18,18],
-	popupAnchor: [0,-6]
-});
+        },
+        onEachFeature: function (feature, layer) {
+           layer.bindLabel(feature.properties.name);
+    }
+     }).addTo(map);
+   
+    map.fitBounds(ausangatePOILayer.getBounds().pad(0.5));
+     });
 
 // Add anp 
 $.getJSON("data/anp.geojson",function(data){
@@ -135,7 +143,7 @@ function anpstyle() {
     };
 }
 </script>
-<img src="image/ausangatefinalweb.svg" width=100% height=1000">
+<img src="img/ausangate.png">
 </img>
 </body>
 </html>

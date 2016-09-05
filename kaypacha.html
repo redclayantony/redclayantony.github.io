@@ -7,6 +7,7 @@
 <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
 <!--Need this to make geojson load-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="js/leaflet.label.js"></script>
 <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -17,6 +18,7 @@
 <body>
  <div class="wrapper">
   <header>
+   <script src="js/leaflet.defaultextent.js"></script>
    <nav class="navbar navbar-inverse role="navigation">
         <div class="container">
           <!-- Brand and toggle get grouped for better mobile display -->
@@ -50,7 +52,7 @@
                           <button class="dropbtn">Treks</button>
                           <div class="dropdown-content">
                             <a href="ausangate.html">Ausangate</a>
-                            <a href="#">Classic Inca Trail</a>
+                            <a href="incatrail.html">Classic Inca Trail</a>
                             <a href="#">Salkantay</a>
                     </li>
                     <li>
@@ -65,7 +67,7 @@
         </div>
         <!-- /.container -->
     </nav>
-   <div class="mapInstructions">Click on any Department in the map to see which hikes are mapped!</div>
+   <div class="mapInstructions">Mapping the best treks in Peru</div>
   </header>
 <div id='map'></div>
 <div id="credits">
@@ -75,7 +77,8 @@
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoicnVzc2x5b244IiwiYSI6IjBSaDVoeW8ifQ.UMzpeudvSJ3dHxAtKiakFg';
 var map = L.mapbox.map('map', null, {
-  maxZoom:18
+  maxZoom:18,
+  defaultExtentControl: true
 }).setView([-9.3651, -73.73], 5);
 var layers = {
       Outdoors: L.mapbox.tileLayer('mapbox.outdoors'),
@@ -89,14 +92,7 @@ var layers = {
 // Create a global variable set to null that can hold our data
 var departmentLayer = null;
 
-// Add department polygons
-$.getJSON("data/Department.geojson",function(data){
-    departmentLayer = L.geoJson(data, {style: style,
-     onEachFeature: function (feature, layer) {
-      layer.bindPopup(feature.properties.D_NOMB);
-     }
-     }).addTo(map);
-});
+
 // Set style function that sets fill color 
 function style() {
     return {
@@ -107,6 +103,81 @@ function style() {
         dashArray: '3'
     };
 }
+
+function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0
+    });
+
+    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+        layer.bringToFront();
+    }
+    info.update(layer.feature.properties);
+}
+
+function resetHighlight(e) {
+    departmentLayer.resetStyle(e.target);
+    info.update();
+}
+
+
+function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+}
+
+
+function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        click: zoomToFeature
+    });
+}
+
+//function labelEachFeature(feature) {
+   // layer.bindLabel(feature.properties.D_NOMB, { 'noHide': true });
+
+// Add department polygons
+$.getJSON("data/Department.geojson",function(data){
+    departmentLayer = L.geoJson(data, {style: style,
+    onEachFeature: onEachFeature
+   
+     }).addTo(map);
+});
+
+var info = L.control();
+
+info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this.update();
+    return this._div;
+};
+
+// method that we will use to update the control based on feature properties passed
+info.update = function (props) {
+    this._div.innerHTML = (props ? props.D_NOMB + '</b><br />'
+        : 'Hover on a Department');
+};
+
+info.addTo(map);
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
 </body>
 </html>
