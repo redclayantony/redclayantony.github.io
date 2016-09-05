@@ -141,6 +141,7 @@ var incaTrailLayer = null;
  
 $.getJSON("data/classicIncaTrail.geojson",function(data){
     incaTrailLayer = L.geoJson(data, {style: incaTrailstyle}).addTo(map);
+    map.fitBounds(incaTrailLayer.getBounds());
 });
 function incaTrailstyle() {
     return {
@@ -172,8 +173,6 @@ $.getJSON("data/machuPOI.geojson",function(data){
            layer.bindLabel(feature.properties.NAME);
         }
      }).addTo(map);
-    
-    map.fitBounds(machuPOILayer.getBounds());
 });
     
 
