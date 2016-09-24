@@ -39,7 +39,14 @@ p { font-size: 100%; line-height: 18px; padding-right: 3em; }
 a { color: #990003 }
 a:hover { text-decoration: none; }
 strong { font-weight: bold; }
-li { line-height: 24px; border-bottom: 1px solid #ccc; }
+li { line-height: 24px; }
+#second_list li {
+    line-height: 24px;
+    padding: 0px;
+    padding-left:10px;
+    margin: 0px;
+    list-style-type: disc;
+}
 p.enlarge { font-size: 144%; padding-right: 6.5em; line-height: 24px; }
 p.enlarge span { color: #000 }
 .contact-info { margin-top: 7px; text-align: right; }
