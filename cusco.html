@@ -102,27 +102,23 @@ function style() {
         fillColor: '#ffd991',
         fillOpacity: 0,
         weight: 1,
-        opacity: 0.4,
+        opacity: 0,
         color: '#75561c',
         dashArray: '3'
     };
 }
  
 
-// Add anp 
-$.getJSON("data/anp.geojson",function(data){
-    anpLayer = L.geoJson(data, {style: anpstyle}).addTo(map);
-});
-function anpstyle() {
-    return {
-        fillColor: '#107511',
-        fillOpacity: 0.1,
-        weight: 1,
-        opacity: 0.4,
-        color: '#107511',
-        dashArray: '3'
-    };
+
+// marker Icon
+// Add trailheads
+function addDataToMap(data, map) {
+    var dataLayer = L.geoJson(data);
+    dataLayer.addTo(map);
 }
+
+$.getJSON("data/trailheadsCusco.geojson", function(data) { addDataToMap(data, map); });
+
 </script>
 <p>Cusco, Arequipa, Huaraz, Junin, Amazonia, Lima, Ica, etc</p>
 </body>

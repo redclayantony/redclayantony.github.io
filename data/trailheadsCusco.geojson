@@ -1,0 +1,19 @@
+{
+"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+                                                                                
+"features": [
+{ "type": "Feature", "properties": { "ele": 3799.900000, "name": "Tiqui", "cmt": "Inicio", "desc": "Trailhead", "src": null, "trek": "Ausangate" }, "geometry": { "type": "Point", "coordinates": [ -71.32054, -13.666798 ] } },
+{ "type": "Feature", "properties": { "ele": 2.000000, "name": "Piskacucho", "cmt": null, "desc": "Trailhead", "src": "SERNANP", "trek": "Inca Trail" }, "geometry": { "type": "Point", "coordinates": [ -72.382040999953716, -13.214781957319483 ] } },
+{ "type": "Feature", "properties": { "ele": 3.000000, "name": "Mollepata", "cmt": null, "desc": "Trailhead", "src": "Wikiloc", "trek": "Salkantay" }, "geometry": { "type": "Point", "coordinates": [ -72.527659049417565, -13.508704436604781 ] } },
+{ "type": "Feature", "properties": { "ele": 4.000000, "name": "Santa Maria", "cmt": null, "desc": "Trailhead", "src": "Wikiloc", "trek": "Inca Jungle Trail" }, "geometry": { "type": "Point", "coordinates": [ -72.633223000014937, -13.007012999998588 ] } },
+{ "type": "Feature", "properties": { "ele": 5.000000, "name": "Cachora", "cmt": null, "desc": "Trailhead", "src": "Wikiloc", "trek": "Choquequirao" }, "geometry": { "type": "Point", "coordinates": [ -72.812638000009358, -13.511578999999106 ] } },
+{ "type": "Feature", "properties": { "ele": 6.000000, "name": "Aguas Calientes", "cmt": null, "desc": "Trailhead", "src": "Wikiloc", "trek": "Machu Picchu" }, "geometry": { "type": "Point", "coordinates": [ -72.525618192326078, -13.154412344894018 ] } },
+{ "type": "Feature", "properties": { "ele": 7.000000, "name": "Phutuq K'usi", "cmt": "Trail Closed", "desc": "Trailhead", "src": "SERNANP", "trek": "Phutuq K'usi" }, "geometry": { "type": "Point", "coordinates": [ -72.526733, -13.1540224 ] } },
+{ "type": "Feature", "properties": { "ele": 8.000000, "name": "Hidroeléctrica", "cmt": null, "desc": "Trailhead", "src": "SERNANP", "trek": "Machu Picchu" }, "geometry": { "type": "Point", "coordinates": [ -72.5587329, -13.1749019 ] } },
+{ "type": "Feature", "properties": { "ele": null, "name": "Huayna Picchu", "cmt": null, "desc": "Trailhead", "src": null, "trek": "Huayna Picchu" }, "geometry": { "type": "Point", "coordinates": [ -72.54575667406074, -13.161751825623462 ] } },
+{ "type": "Feature", "properties": { "ele": 9.000000, "name": "Cerro Machu Picchu", "cmt": null, "desc": "Trailhead", "src": null, "trek": "Cerro Machu Picchu" }, "geometry": { "type": "Point", "coordinates": [ -72.544262000017625, -13.166659099998206 ] } },
+{ "type": "Feature", "properties": { "ele": 10.000000, "name": "Puente Inca", "cmt": null, "desc": "Trailhead", "src": null, "trek": "Puente Inca" }, "geometry": { "type": "Point", "coordinates": [ -72.545358000017572, -13.166162699998202 ] } },
+{ "type": "Feature", "properties": { "ele": 99.000000, "name": "KM 104", "cmt": null, "desc": "Trailhead", "src": null, "trek": "Short Inca Trail" }, "geometry": { "type": "Point", "coordinates": [ -72.50863263994448, -13.186149763976507 ] } }
+]
+}
