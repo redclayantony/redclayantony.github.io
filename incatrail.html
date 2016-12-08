@@ -109,7 +109,7 @@ var archIcon = L.icon({
 });
 
  // Get CartoDB selection as GEOJSON and Add to Map
- $.getJSON("http://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryArch, function(data) {
+ $.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryArch, function(data) {
     archSite = L.geoJson(data,{
        onEachFeature: function (feature, layer) {
            layer.bindPopup(feature.properties.name);
@@ -145,7 +145,7 @@ var trailheadIcon = L.icon({
 });
 
  // Get CartoDB selection as GEOJSON and Add to Map
- $.getJSON("http://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryTH, function(data) {
+ $.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryTH, function(data) {
     trailHead = L.geoJson(data,{
        onEachFeature: function (feature, layer) {
            layer.bindPopup(feature.properties.name);
@@ -186,7 +186,7 @@ function showAll(){
       map.removeLayer(treksMachuEditgeo);
   }}
  // Get CartoDB selection as GEOJSON and Add to Map
- $.getJSON("http://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryInca, function(data) {
+ $.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryInca, function(data) {
     treksMachu = L.geoJson(data,{
        style: trekStyle,
        onEachFeature: function (feature, layer) {
@@ -218,7 +218,7 @@ function showAll(){
       map.removeLayer(sanctuarymp);
   }}
  // Get CartoDB selection as GEOJSON and Add to Map
- $.getJSON("http://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryMachu, function(data) {
+ $.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryMachu, function(data) {
     sanctMachu = L.geoJson(data,{
        style: sanctStyle,
        onEachFeature: function (feature, layer) {
