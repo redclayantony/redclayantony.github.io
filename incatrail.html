@@ -7,7 +7,6 @@
 <script src='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.js'></script>
 <!--Need this to make geojson load-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="js/leaflet.label.js"></script>
 <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
 <!-- Bootstrap Core CSS -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -18,7 +17,6 @@
 <body>
  <div class="wrapper">
   <header>
-   <script src="js/leaflet.defaultextent.js"></script>
    <nav class="navbar navbar-inverse role="navigation">
         <div class="container">
           <!-- Brand and toggle get grouped for better mobile display -->
@@ -42,7 +40,7 @@
                             <a href="ancash.html">Ancash</a>
                             <a href="arequipa.html">Arequipa</a>
                             <a href="cajamarca.html">Cajamarca</a>-->
-                            <a href="cusco.html" class="">Cusco</a>
+                            <a href="#" class="">Cusco</a>
                             <!--<a href="junin.html">Junin</a>-->
                           </div>
                          </div>
@@ -52,7 +50,7 @@
                           <button class="dropbtn">Treks</button>
                           <div class="dropdown-content">
                             <a href="ausangate.html">Ausangate</a>
-                            <a href="incatrail.html">Classic Inca Trail</a>
+                            <a href="#">Classic Inca Trail</a>
                             <a href="#">Salkantay</a>
                     </li>
                     <li>
@@ -63,136 +61,180 @@
                     </li>
                 </ul>
             </div>
-            <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>
-   <div class="mapInstructions">Classic Inca Trail</div>
-  </header>
-<div id='map'></div>
-<div id="credits">
- <p>Classic Inca Trail to Machu Picchu<br><br>
+<div id='map'style="width: 100%; height: 600px;"></div>
 
-
-Trekkers normally take four or five days to complete the "Classic Inca Trail" but a two-day trek from Km 104 is also possible.
-
-It starts from one of two points: 88 km (55 miles) or 82 km (51 miles) from Cusco on the Urubamba River at approximately 2,800 metres (9,200 ft) or 2,600 metres (8,500 ft) altitude, respectively.
-
-Both of these trail segments meet above the Inca ruins of Patallaqta (sometimes called Llaqtapata), a site used for religious and ceremonial functions, crop production, and housing for soldiers from the nearby hilltop site of Willkaraqay, an ancient pre-Inca site first inhabited around 500 BC. The trail undulates, but overall ascends along the Kusichaka River. <br><br>
-
-At the small village Wayllapampa ("grassy plain", Wayllabamba) the trail intersects with the "Mollepata Trail" at 3,000 metres (9,800 ft).
-
-Small, permanent settlements are located adjacent to the trail, and Wayllapampa has approximately 400 inhabitants (130 families) spread along this portion of the trail. Pack animals—horses, mules, donkeys, and llamas—are allowed.
-
-At Wayllapampa the trail to Machu Picchu turns west and begins ascending along a tributary of the Kusichaka. Because of previous damage caused by hooves, pack animals are not allowed on the remainder of the trail. For the same reason, metal-tipped trekking poles are not allowed on the trail. <br><br>
-
-
-As the trail ascends toward Warmi Wañusqa, or "Dead Woman's Pass", which resembles a supine woman, it passes through differing habitats, one of which is a cloud forest containing Polylepis trees. The campsite at Llulluch'apampa (Llulluchapampa) is located on this stretch of trail at 3,800 metres (12,500 ft). The pass itself is located at 4,215 m (13,829 ft) above sea level, and is the highest point on this, the "Classic" trail.
-
-After crossing the pass the trail drops steeply into the Pakaymayu drainage. At a distance of 2.1 km and 600 m below the pass is the campground Pakaymayu.
-
-
-After passing Pakaymayu the trail begins steeply ascending the other side of the valley. One kilometre along the trail, at an altitude of 3,750 metres (12,300 ft) is the Incan tampu Runkuraqay, ruins which overlook the valley. The site was heavily restored in the late 1990s.
-
-The trail continues to ascend, passing a small lake named Quchapata (Cochapata) in an area that is recognized as deer habitat. This site had been used as a camp site. As with other sites that were being degraded due to overuse, camping is no longer allowed. The trail reaches the pass at an altitude of 3950 m. <br><br>
-
-The trail continues through high cloud forest, undulating, sometimes steeply while affording increasingly dramatic viewpoints of mountains and dropoffs. Next, the Sayaqmarka ("steep-place town") is reached followed by the tampu Qunchamarka. A long Inca tunnel and a viewpoint overlooking two valleys: the Urubamba and Aobamba (a broken word), are passed.
-
-Another high point at altitude of 3650 m is crossed, followed by a campground, and then after a short descent, a site with extensive ruins. The name Phuyupatamarka ("cloud-level town") (phoo-yoo-patta-marka) is applied to both the campground, and the ruins.
-
-Hiram Bingham III discovered the site, but left most of it covered with vegetation. The Fejos team named the site, and uncovered the remainder. Design of the site closely follows the natural contours, and includes five fountains and an altar, which was probably used for llama sacrifice. <br><br>
-
-The trail then descends approximately 1000 metres including an irregular staircase of approximately 1500 steps, some of which were carved into solid granite. Vegetation becomes more dense, lush, and "jungle" like with an accompanying increase in butterflies and birds. A second Incan tunnel is along this section of trail.
-
-Even before passing through the tunnel there are views down to the Willkanuta River, the first since leaving the river at Patallaqta. The number of these views increases. After the tunnel the town of Machupicchu (Aguas Calientes) can be seen, and trains running along the river can be heard. As the trail nears Intipata, it affords views of the "Two Day" Inca Trail (aka "Camino Real de los Inkas" or "One Day Inca Trail"). A small spur of the trail leads directly to Wiñay Wayna, while the main route continues to Intipata.
-
-Intipata (aka Yunkapata) is a recently uncovered extensive set of agricultural terraces which follow the convex shape of the terrain. Potatoes, maize, fruit, and sweet potato were grown here. <br><br>
-
-The name Wiñay Wayna (forever young) (win-yay-way-na) is used to refer to both a hostel–restaurant–camp site and a set of Inca ruins. Two groups of major architectural structures, a lower and upper, are set among multiple agricultural terraces at this concave mountainside site. A long flight of fountains or ritual baths utilizing as many as 19 springs runs between the two groups of buildings.
-
-From Wiñay Wayna the trail undulates along below the crest of the east slope of the mountain named Machu Picchu. The steep stairs leading to Inti Punku ("sun gate") are reached after approximately 3 km. Reaching the crest of this ridge reveals the grandeur of the ruins of Machu Picchu, which lie below. A short downhill walk is the final section of the trail. <br><br>
-
-Because of its popularity, the Peruvian Government instituted several controls to reduce human impact upon the trail and within the ancient city. The most notable is a quota system, introduced in 2001, whereby only a set amount of people (including hikers, porters, and guides) would be allowed to hike along the Inca Trail each day. This system is still in effect; any person wishing to hike the Inca Trail must obtain a permit beforehand. As of 2016, 500 permits are issued for each day. All of the year's permits are released in January, and are sold on a first-come, first-served basis. Permits sell out quickly, particularly those for the high season. Most operators advise hikers to purchase permits at least 6 months in advance. The government also mandated that every trekker on the trail must be accompanied by a guide. Because of this rule, permits can only be obtained through a government registered tour operator. All permits are paired with an individual passport, and are not transferable. The government monitors the trail closely; there are several control points along the trail.<br><br>
-
-The Inca Trail altitude varies quite significantly and people often struggle with altitude sickness, especially if they have not spent much time in Cusco prior to trekking the trail.
-
-Cusco stands at 3,200 metres and is already significantly higher than Machu Picchu itself, however, many sections of the Inca Trail are much higher.
-
-Starting at 2,600 metres, the trail ascends to 3,300 metres on the first day. The second day ascends over Dead Woman's pass- the highest point on the Inca Trail at 4,200 metres. This is the most dangerous point in terms of altiude sickness, however, you do not spend long at this altitude and by the afternoon you'll be back at 3,600 metres.
-
-The trail only descends from this point until you reach Machu Picchu at 2,430 metres.</p>
-</div>
-</div> <!--wrapper-->
+<!--Need this to make geojson load-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoicnVzc2x5b244IiwiYSI6IjBSaDVoeW8ifQ.UMzpeudvSJ3dHxAtKiakFg';
 var map = L.mapbox.map('map', null, {
   maxZoom:18
-}).setView([-9.3651, -73.73], 5);
+}).setView([-13.163, -72.545], 14);
 var layers = {
-      Outdoors: L.mapbox.tileLayer('mapbox.outdoors'),
       Streets: L.mapbox.tileLayer('mapbox.streets'),
+      Outdoors: L.mapbox.tileLayer('mapbox.outdoors'),
       Satellite: L.mapbox.tileLayer('mapbox.satellite')
   };
 
-  layers.Outdoors.addTo(map);
+  layers.Streets.addTo(map);
   L.control.layers(layers).addTo(map);
-    
-var incaTrailLayer = null;
- 
-$.getJSON("data/classicIncaTrail.geojson",function(data){
-    incaTrailLayer = L.geoJson(data, {style: incaTrailstyle}).addTo(map);
-    map.fitBounds(incaTrailLayer.getBounds());
-});
-function incaTrailstyle() {
-    return {
-        weight: 3,
-        opacity: 1,
-        color: '#aa6e8e',
-        dashArray: '1'
-    };
-}
+  
+// Add cusco.geojson
+var archSite = null;
 
-// marker Icon
-var markerIcon = L.icon({
-	iconUrl: 'icons/circle-11.svg',
-	shadowUrl: 'icons/circle-11.svg',
-	iconSize: [5,5],
-	iconAnchor: [18,18],
-	popupAnchor: [0,-6]
+// Database queries
+
+// Get arch sites
+
+var sqlQueryArch = "SELECT * FROM archSiteMachu";
+
+// Set CArtoDB Username
+var cartoUserName = "redclayantony";
+
+// Function to add treksMachu
+function showAll(){
+  if(map.hasLayer(archSiteMachu)){
+      map.removeLayer(archSiteMachu);
+  }}
+  
+  //archIcon
+var archIcon = L.icon({
+    iconUrl: 'icons/archIcon.svg',
+    iconSize: [12,12],
+    iconAnchor: [5,5],
+    popupanchor: [0,-3]
 });
 
-var machuPOILayer = null;
-
-$.getJSON("data/machuPOI.geojson",function(data){
-    machuPOILayer = L.geoJson(data, {color: '#aa6e8e',
-            pointToLayer: function (feature, latlng) {
-            var marker = L.marker(latlng,{icon: markerIcon});
-            return marker;
-        },
-        onEachFeature: function (feature, layer) {
-           layer.bindLabel(feature.properties.NAME);
-        }
-     }).addTo(map);
+ // Get CartoDB selection as GEOJSON and Add to Map
+ $.getJSON("http://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryArch, function(data) {
+    archSite = L.geoJson(data,{
+       onEachFeature: function (feature, layer) {
+           layer.bindPopup(feature.properties.name);
+    }, pointToLayer: function (feature, latlng) {
+        var marker = L.marker(latlng,{icon: archIcon});
+        return marker;
+          //layer.cartodb_id=feature.properties.cartodb_id;
+       }
+    }).addTo(map);
 });
-    
 
-// Add anp 
-$.getJSON("data/anp.geojson",function(data){
-    anpLayer = L.geoJson(data, {style: anpstyle}).addTo(map);
+// Add trailheadcusco.geojson
+var trailHead = null;
+
+// Database queries
+
+// Get trailheads
+
+var sqlQueryTH = "SELECT * FROM trailheadscusco";
+
+// Function to add trailheads
+function showAll(){
+  if(map.hasLayer(trailheadscusco)){
+      map.removeLayer(trailheadscusco);
+  }}
+  
+  //archIcon
+var trailheadIcon = L.icon({
+    iconUrl: 'icons/walker.svg',
+    iconSize: [14,14],
+    iconAnchor: [5,5],
+    popupanchor: [0,-3]
 });
-function anpstyle() {
-    return {
-        fillColor: '#107511',
-        fillOpacity: 0,
-        weight: 2,
-        opacity: 0.4,
-        color: '#107511',
-        dashArray: '3'
-    };
-}
+
+ // Get CartoDB selection as GEOJSON and Add to Map
+ $.getJSON("http://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryTH, function(data) {
+    trailHead = L.geoJson(data,{
+       onEachFeature: function (feature, layer) {
+           layer.bindPopup(feature.properties.name);
+    }, pointToLayer: function (feature, latlng) {
+        var marker = L.marker(latlng,{icon: trailheadIcon});
+        return marker;
+          //layer.cartodb_id=feature.properties.cartodb_id;
+       }
+    }).addTo(map);
+});
+
+//Run showAll function when doc loads
+$( document ).ready(function() {
+  showAll();
+  });  
+  
+// Add treksMachuEditGeo.geojson
+var treksMachu = null;
+
+// Database queries
+
+var sqlQueryInca = "SELECT * FROM treksMachuEdit";
+
+// Set CArtoDB Username
+var cartoUserName = "redclayantony";
+
+//machuTrek line style
+var trekStyle = {
+ color: "#4d4d4d",
+ weight: 3,
+ opacity: 1,
+ dashArray: "5"
+};
+
+// Function to add treksMachu
+function showAll(){
+  if(map.hasLayer(treksMachuEditgeo)){
+      map.removeLayer(treksMachuEditgeo);
+  }}
+ // Get CartoDB selection as GEOJSON and Add to Map
+ $.getJSON("http://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryInca, function(data) {
+    treksMachu = L.geoJson(data,{
+       style: trekStyle,
+       onEachFeature: function (feature, layer) {
+          layer.bindPopup(feature.properties.label);
+          layer.cartodb_id=feature.properties.cartodb_id;
+       }
+    }).addTo(map);
+});
+
+// Add sanctuarymp.geojson
+var sanctMachu = null;
+
+// Database queries
+
+var sqlQueryMachu = "SELECT * FROM sanctuarymp";
+
+//sanctMP style
+var sanctStyle = {
+ color: "#659D32",
+ fill: false,
+ weight: 7,
+ opacity: 0.7,
+ dashArray: "1"
+};
+
+// Function to add sanctMachu
+function showAll(){
+  if(map.hasLayer(sanctuarymp)){
+      map.removeLayer(sanctuarymp);
+  }}
+ // Get CartoDB selection as GEOJSON and Add to Map
+ $.getJSON("http://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryMachu, function(data) {
+    sanctMachu = L.geoJson(data,{
+       style: sanctStyle,
+       onEachFeature: function (feature, layer) {
+          layer.bindPopup(feature.properties.label);
+          layer.cartodb_id=feature.properties.cartodb_id;
+       }
+    }).addTo(map);
+});
+
+//Run showAll function when doc loads
+$( document ).ready(function() {
+  showAll();
+  });
+
 </script>
-<img src="img/ClassicIncaTrail.jpg">
-</img>
+<p>Cusco, Arequipa, Huaraz, Junin, Amazonia, Lima, Ica, etc</p>
 </body>
 </html>
 <!-- mapbox://styles/mapbox/outdoors-v9-->
