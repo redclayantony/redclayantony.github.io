@@ -5,6 +5,7 @@
 <title>Kay Pacha</title>
 <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
 <script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <!--Need this to make geojson load-->
 <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
 <script src="js/leaflet.label.js"></script>
@@ -68,20 +69,39 @@ var map = L.mapbox.map('map', null, {
   maxZoom:18
 }).setView([-9.3651, -73.73], 5);
 var layers = {
-      Outdoors: L.mapbox.tileLayer('mapbox.outdoors'),
       Streets: L.mapbox.tileLayer('mapbox.streets'),
-      Satellite: L.mapbox.tileLayer('mapbox.satellite')
+      Outdoors: L.mapbox.styleLayer('mapbox://styles/russlyon8/ciwjh10yq000d2qo73t44eva0'),
+      Satellite: L.mapbox.styleLayer('mapbox://styles/russlyon8/cioowi3rs001rbnnnsmkskehw')
   };
 
   layers.Outdoors.addTo(map);
   L.control.layers(layers).addTo(map);
     
 var ausangateLayer = null;
- 
-$.getJSON("data/ausangateTrek.geojson",function(data){
-    ausangateLayer = L.geoJson(data, {style: ausangatestyle}).addTo(map);
+
+var sqlQueryAusangate = "SELECT * FROM ausangateTrek";
+
+// Set CartoDB Username
+var cartoUserName = "redclayantony";
+
+// Function to add treksMachu
+function showAll(){
+  if(map.hasLayer(ausangateTrek)){
+      map.removeLayer(ausangateTrek);
+  }}
+		
+$.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryAusangate, function(data) {
+    ausangateLayer = L.geoJson(data,{
+					  style: ausangateStyle,
+       pointToLayer: function (feature, latlng) {
+        var marker = L.marker(latlng,{icon: markerIcon});
+        return marker;
+          //layer.cartodb_id=feature.properties.cartodb_id;
+       }
+    }).addTo(map);
+				map.fitBounds(ausangateLayer.getBounds().pad(0.5));
 });
-function ausangatestyle() {
+function ausangateStyle() {
     return {
         weight: 3,
         opacity: 1,
@@ -90,45 +110,37 @@ function ausangatestyle() {
     };
 }
 
-// marker Icon
-var markerIcon = L.icon({
-	iconUrl: 'icons/circle-11.svg',
-	shadowUrl: 'icons/circle-11.svg',
-	iconSize: [5,5],
-	iconAnchor: [18,18],
-	popupAnchor: [0,-6]
-});
-
 var ausangatePOILayer = null;
 
-$.getJSON("data/ausangatePOI.geojson",function(data){
-    ausangatePOILayer = L.geoJson(data, {color: '#aa6e8e',
+var sqlQueryAusPOI = "SELECT * FROM ausangatepoi";
+
+$.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryAusPOI, function(data) {
+    ausangatePOILayer = L.geoJson(data,{
             pointToLayer: function (feature, latlng) {
             var marker = L.marker(latlng,{icon: markerIcon});
             return marker;
         },
         onEachFeature: function (feature, layer) {
            layer.bindLabel(feature.properties.name);
-    }
+											layer.cartodb_id=feature.properties.cartodb_id;
+        }
      }).addTo(map);
-   
-    map.fitBounds(ausangatePOILayer.getBounds().pad(0.5));
-     });
-
-// Add anp 
-$.getJSON("data/anp.geojson",function(data){
-    anpLayer = L.geoJson(data, {style: anpstyle}).addTo(map);
+				
 });
-function anpstyle() {
-    return {
-        fillColor: '#107511',
-        fillOpacity: 0,
-        weight: 2,
-        opacity: 0.4,
-        color: '#107511',
-        dashArray: '3'
-    };
-}
+				
+// marker Icon
+var markerIcon = L.icon({
+	iconUrl: 'icons/circle-11.svg',
+	iconSize: [5,5],
+	iconAnchor: [18,18],
+	popupAnchor: [0,-6]
+});
+				
+//Run showAll function when doc loads
+$( document ).ready(function() {
+  showAll();
+  });
+
 </script>
 <img src="img/ausangate.jpg">
 </img>
