@@ -13,12 +13,10 @@
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="css/custom2.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/1-col-portfolio.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="css/one-page-wonder.css" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -29,7 +27,7 @@
 </head>
 
 <body>
-<div id="page-wrap">
+
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
@@ -47,13 +45,27 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="resume.html">CV</a>
+                        <div class="dropdown">
+                          <button class="dropbtn">CV/Training</button>
+                          <div class="dropdown-content">
+                            <a href="resume.html">CV</a>
+                            <a href="training.html" class="">Training</a>
+                            <!--<a href="junin.html">Junin</a>-->
+                          </div>
+                         </div>
                     </li>
                     <li>
-                        <a href="kaypacha.html">Kay Pacha</a>
+                        <div class="dropdown">
+                          <button class="dropbtn">Web Maps</button>
+                          <div class="dropdown-content">
+                            <a href="incatrail.html">Machu Picchu</a>
+                            <a href="ausangate.html">Ausangate</a>
+                            <a href="https://redclayantony.carto.com/viz/43eec686-bc27-11e6-b159-0e98b61680bf/public_map" class=""> MP Chloropleth</a>
+                          </div>
+                         </div>
                     </li>
                     <li>
-                        <a href="mapsA.html">Maps</a>
+                        <a href="mapsA.html">Mapfolio</a>
                     </li>
                     <li>
                         <a href="about.html">About Me</a>
