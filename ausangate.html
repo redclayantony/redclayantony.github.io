@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset=utf-8 />
-<title>Kay Pacha</title>
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<!--Need this to make geojson load-->
-<link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
-<script src="js/leaflet.label.js"></script>
-<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
-<!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<!-- Custom CSS -->
-<link href="css/custom.css" rel="stylesheet">
+				<meta charset=utf-8 />
+				<title>Kay Pacha</title>
+				<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+				<script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+				<!--Need this to make geojson load-->
+				<link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
+				<script src="js/leaflet.label.js"></script>
+				<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+				<!-- Bootstrap Core CSS -->
+				<link href="css/bootstrap.min.css" rel="stylesheet">
+				<!-- Custom CSS -->
+				<link href="css/custom.css" rel="stylesheet">
 </head>
 
 <body>
@@ -30,7 +30,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="kaypacha.html">Kay Pacha</a>
+                <a class="navbar-brand" href=#>Kay Pacha</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -55,12 +55,9 @@
         </div>
         <!-- /.container -->
     </nav>
-   <div class="mapInstructions">El Camino del Apu Ausangate</div>
   </header>
 <div id='map'></div>
 <div id="credits">
- <p>Ausangate or Auzangate (in hispanicized spellings) is a mountain of the Willkanuta mountain range in the Andes of Peru. With an elevation of 6,384 metres it is situated around 100 kilometres southeast of Cusco in the Cusco Region, Canchis Province, Pitumarca District, and in the Quispicanchi Province, Ocongate District. The mountain has significance in Incan mythology. Every year the Quyllur Rit'i (Quechua for "star snow") festival which attracts thousands of Quechua pilgrims is celebrated about 20 km north of the Ausangate at the mountain Qullqipunku. It takes place one week before the Corpus Christi feast.
-The region is inhabited by llama and alpaca herding communities, and constitutes one of the few remaining pastoralist societies in the world. High mountain trails are used by these herders to trade with agricultural communities at lower elevations. Currently, one of these trails, "the road of the Apu Ausangate", is one of the most renowned treks in Peru.</p>
 </div>
 </div> <!--wrapper-->
 <script>
@@ -116,22 +113,19 @@ var sqlQueryAusPOI = "SELECT * FROM ausangatepoi";
 
 $.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryAusPOI, function(data) {
     ausangatePOILayer = L.geoJson(data,{
-            pointToLayer: function (feature, latlng) {
-            var marker = L.marker(latlng,{icon: markerIcon});
-            return marker;
-        },
-        onEachFeature: function (feature, layer) {
-           layer.bindLabel(feature.properties.name);
-											layer.cartodb_id=feature.properties.cartodb_id;
-        }
-     }).addTo(map);
-				
+											onEachFeature: function (feature, layer) {
+           layer.bindPopup(feature.properties.name);
+    }, pointToLayer: function (feature, latlng) {
+        var marker = L.marker(latlng,{icon: markerIcon});
+        return marker;
+          //layer.cartodb_id=feature.properties.cartodb_id;
+       }
+    }).addTo(map);
 });
-				
 // marker Icon
 var markerIcon = L.icon({
 	iconUrl: 'icons/circle-11.svg',
-	iconSize: [5,5],
+	iconSize: [8,8],
 	iconAnchor: [18,18],
 	popupAnchor: [0,-6]
 });
@@ -142,7 +136,6 @@ $( document ).ready(function() {
   });
 
 </script>
-<img src="img/ausangate.jpg">
 </img>
 </body>
 </html>

@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset=utf-8 />
-<title>Kay Pacha</title>
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
-<script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
-<!--Need this to make geojson load-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
-<!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<!-- Custom CSS -->
-<link href="css/custom.css" rel="stylesheet">
+    <meta charset=utf-8 />
+    <title>Kay Pacha</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link href="css/bootstrap.min.css" rel="stylesheet"><!-- Bootstrap Core CSS -->
+    <link href="css/custom.css" rel="stylesheet"><!-- Custom CSS -->
+    <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
+    <script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><!--Need this to make geojson load-->
 </head>
 
 <body>
@@ -25,19 +22,11 @@
                     <span class="sr-only">Toggle navigation</span>
                     
                 </button>
-                <a class="navbar-brand" href="kaypacha.html">Kay Pacha</a>
+                <a class="navbar-brand" href=#>Kay Pacha</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <!--<li>
-                        <div class="dropdown">
-                          <button class="dropbtn">Regions</button>
-                          <div class="dropdown-content">
-                           <!--<a href="amazonas.html">Amazonas</a>
-                          </div>
-                         </div>
-                    </li>-->
                     <li>
                         <div class="dropdown">
                           <button class="dropbtn">Treks</button>
@@ -48,12 +37,11 @@
                 </ul>
             </div>
         </div>
-        <!-- /.container -->
     </nav>
-<div id='map'style="width: 100%; height: 600px;"></div>
+<div id='map'></div>
 <script>
 L.mapbox.accessToken = 'pk.eyJ1IjoicnVzc2x5b244IiwiYSI6IjBSaDVoeW8ifQ.UMzpeudvSJ3dHxAtKiakFg';
-var map = L.mapbox.map('map', null, {maxZoom:18}).setView([-13.163, -72.545], 14);
+var map = L.mapbox.map('map', null, {maxZoom:18}).setView([-13.163, -72.545], 15);
 var layers = {
       Streets: L.mapbox.tileLayer('mapbox.streets'),
       Outdoors: L.mapbox.styleLayer('mapbox://styles/russlyon8/ciwjh10yq000d2qo73t44eva0'),
@@ -217,7 +205,6 @@ $( document ).ready(function() {
   });
 
 </script>
-<p>Click on trail to see name</p>
 </body>
 </html>
 <!-- mapbox://styles/mapbox/outdoors-v9-->
