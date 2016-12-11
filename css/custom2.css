@@ -1,3 +1,100 @@
+body {
+    padding-top: 30px;
+    margin: auto;/* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+#page-wrap {
+     width: 800px;
+     margin: 0 auto;
+}
+p {
+    font-size: 16px;
+    display: block;
+    margin: auto;
+}
+h1 {
+    font-family: Georgia, Arial;
+    font-size: 48px;
+}
+footer {
+    margin: 50px 0;
+}
+
+.row{
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header-image1{
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: url("molepier.jpg") no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.header-image2{
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: url("noryauyos.jpg") no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.header-image3{
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: url("yamp.jpg") no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+.header-image4{
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: url("zorzor.jpg") no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.headline {
+    padding: 120px 0;
+}
+
+.headline h1 {
+    font-size: 80px;
+    font-family: Georgia, Arial;
+    background: #fff;
+    background: rgba(255,255,255,0.9);
+}
+
+.headline h2 {
+    font-size: 48px;
+    font-family: Georgia, Arial;
+    background: #fff;
+    background: rgba(255,255,255,0.9);
+}
+
+img {
+	width: auto;
+	max-width: 100%;
+    height: auto;
+	display: block;
+    margin: auto
+}
+
+p {
+	padding: 10px;
+}
+
 /* nav bar list not in dropdown hover*/
 .navbar-inverse .navbar-nav>li>a:hover {
 	color: #FFFFFF !important;

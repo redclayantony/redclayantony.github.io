@@ -5,7 +5,8 @@
  */
 
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    padding-top: 30px;
+    margin: auto;/* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 #page-wrap {
      width: 800px;
@@ -13,6 +14,8 @@ body {
 }
 p {
     font-size: 16px;
+    display: block;
+    margin: auto;
 }
 h1 {
     font-family: Georgia, Arial;
