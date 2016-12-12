@@ -38,218 +38,202 @@
             </div>
         </div>
     </nav>
+ </div>
 <div id='map'></div>
-<script>
-L.mapbox.accessToken = 'pk.eyJ1IjoicnVzc2x5b244IiwiYSI6IjBSaDVoeW8ifQ.UMzpeudvSJ3dHxAtKiakFg';
-var map = L.mapbox.map('map', null, {maxZoom:18}).setView([-13.163, -72.545], 15);
-var layers = {
-      Streets: L.mapbox.tileLayer('mapbox.streets'),
-      Outdoors: L.mapbox.styleLayer('mapbox://styles/russlyon8/ciwjh10yq000d2qo73t44eva0'),
-      Satellite: L.mapbox.styleLayer('mapbox://styles/russlyon8/cioowi3rs001rbnnnsmkskehw')
-  };
+    <script>
+        L.mapbox.accessToken = 'pk.eyJ1IjoicnVzc2x5b244IiwiYSI6IjBSaDVoeW8ifQ.UMzpeudvSJ3dHxAtKiakFg';
+        var map = L.mapbox.map('map', null, {maxZoom:18}).setView([-13.163, -72.545], 15);
+        var layers = {
+            Streets: L.mapbox.tileLayer('mapbox.streets'),
+            Outdoors: L.mapbox.styleLayer('mapbox://styles/russlyon8/ciwjh10yq000d2qo73t44eva0'),
+            Satellite: L.mapbox.styleLayer('mapbox://styles/russlyon8/cioowi3rs001rbnnnsmkskehw')
+        };
 
-  layers.Outdoors.addTo(map);
-  L.control.layers(layers).addTo(map);
- 
- 
- 
-// Add cusco.geojson
-var archSite = null;
+        layers.Outdoors.addTo(map);
+        L.control.layers(layers).addTo(map);
+        
+        // Set CartoDB Username
+        var cartoUserName = "redclayantony";
+        
+        // Add archaeologicalsites geojson from Carto
+        var archSite = null;
 
-// Get arch sites
+        // sql query call on archaeological sites
+        var sqlQueryArch = "SELECT * FROM archSiteMachu";
 
-var sqlQueryArch = "SELECT * FROM archSiteMachu";
+        // Set CartoDB Username
+        var cartoUserName = "redclayantony";
 
-// Set CartoDB Username
-var cartoUserName = "redclayantony";
-
-// Function to add treksMachu
-function showAll(){
-  if(map.hasLayer(archSiteMachu)){
-      map.removeLayer(archSiteMachu);
-  }}
+        // remove archsites if already loaded
+        function showAll(){
+         if(map.hasLayer(archSiteMachu)){
+           map.removeLayer(archSiteMachu);
+        }}
   
-  //archIcon
-var archIcon = L.icon({
-    iconUrl: 'icons/archIcon2.svg',
-    iconSize: [28,28],
-    iconAnchor: [5,5],
-    popupanchor: [0,-3]
-});
-
- // Get CartoDB selection as GEOJSON and Add to Map
- $.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryArch, function(data) {
-    archSite = L.geoJson(data,{
-       onEachFeature: function (feature, layer) {
-           layer.bindPopup(feature.properties.name);
-    }, pointToLayer: function (feature, latlng) {
-        var marker = L.marker(latlng,{icon: archIcon});
-        return marker;
-          //layer.cartodb_id=feature.properties.cartodb_id;
-       }
-    }).addTo(map);
-});
-
-// Add trailheadcusco.geojson
-var trailHead = null;
-
-// Database queries
-
-// Get trailheads
-
-var sqlQueryTH = "SELECT * FROM trailheadscusco";
-
-// Function to add trailheads
-function showAll(){
-  if(map.hasLayer(trailheadscusco)){
-      map.removeLayer(trailheadscusco);
-  }}
-  
-  //archIcon
-var trailheadIcon = L.icon({
-    iconUrl: 'icons/walker.svg',
-    iconSize: [14,14],
-    iconAnchor: [5,5],
-    popupanchor: [0,-3]
-});
-
- // Get CartoDB selection as GEOJSON and Add to Map
- $.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryTH, function(data) {
-    trailHead = L.geoJson(data,{
-       onEachFeature: function (feature, layer) {
-           layer.bindPopup(feature.properties.name);
-    }, pointToLayer: function (feature, latlng) {
-        var marker = L.marker(latlng,{icon: trailheadIcon});
-        return marker;
-          //layer.cartodb_id=feature.properties.cartodb_id;
-       }
-    }).addTo(map);
-});
-
-//Run showAll function when doc loads
-$( document ).ready(function() {
-  showAll();
-  });  
-  
-// Add treksMachuEditGeo.geojson
-var treksMachu = null;
-
-
-function highlightFeature(e) {
-    var layer = e.target;
-
-    layer.setStyle({
-        weight: 8,
-        color: '#912CEE',
-        dashArray: ''
-    });
-
-    if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
-        layer.bringToFront();
-    }
-    info.update(layer.feature.properties);
-}
-
-function resetHighlight(e) {
-    treksMachu.resetStyle(e.target);
-    info.update();
-}
-
-// Database queries
-
-var sqlQueryInca = "SELECT * FROM treksmachugeo2";
-
-// Set CArtoDB Username
-var cartoUserName = "redclayantony";
-
-//machuTrek line style
-var trekStyle = {
- color: "#aa6e8e",
- weight: 2,
- opacity: 1,
- dashArray: "5"
-};
-
-// Function to add treksMachu
-function showAll(){
-  if(map.hasLayer(treksmachugeo2)){
-      map.removeLayer(treksmachugeo2);
-  }}
-  
-function onEachFeature(feature, layer){
-        layer.on({
-            mouseover: highlightFeature,
-            mouseout: resetHighlight
+         //archIcon style
+        var archIcon = L.icon({
+            iconUrl: 'icons/archIcon2.svg',
+            iconSize: [28,28],
+            iconAnchor: [5,5],
+            popupanchor: [0,-3]
         });
- }
+
+        // Get CartoDB selection as GEOJSON and Add to Map
+        $.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryArch, function(data) {
+            archSite = L.geoJson(data,{
+                onEachFeature: function (feature, layer) {
+                   layer.bindPopup(feature.properties.name);
+                }, pointToLayer: function (feature, latlng) {
+                    var marker = L.marker(latlng,{icon: archIcon});
+                    return marker;
+                }
+            }).addTo(map);
+        });
+
+        // Add trailheadcusco.geojson
+        var trailHead = null;
+        
+        // sql query on trailheads
+        var sqlQueryTH = "SELECT * FROM trailheadscusco";
+
+        // remove trailheads if already loaded
+        function showAll(){
+            if(map.hasLayer(trailheadscusco)){
+                map.removeLayer(trailheadscusco);
+            }}
+  
+       //archIcon
+        var trailheadIcon = L.icon({
+            iconUrl: 'icons/walker.svg',
+            iconSize: [14,14],
+            iconAnchor: [5,5],
+            popupanchor: [0,-3]
+        });
+
+        // Get CartoDB selection as GEOJSON and Add to Map
+        $.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryTH, function(data) {
+            trailHead = L.geoJson(data,{
+                onEachFeature: function (feature, layer) {
+                    layer.bindPopup(feature.properties.name);
+                }, pointToLayer: function (feature, latlng) {
+                    var marker = L.marker(latlng,{icon: trailheadIcon});
+                    return marker;
+                }
+            }).addTo(map);
+        }); 
+  
+        // Add treksMachuGeo2.geojson
+        var treksMachu = null;
+            
+        //event listener for mouseover   
+        function highlightFeature(e) {
+            var layer = e.target;
+
+                layer.setStyle({
+                    weight: 8,
+                    color: '#7D26CD',
+                    dashArray: ''
+                });
+
+            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                layer.bringToFront();
+            }
+            info.update(layer.feature.properties);
+            }
+
+        function resetHighlight(e) {
+            treksMachu.resetStyle(e.target);
+            info.update();
+        }
+
+        // sql query on treksmachgeo2
+        var sqlQueryInca = "SELECT * FROM treksmachugeo2";
+
+        //machuTrek line style
+        var trekStyle = {
+            color: "#aa6e8e",
+            weight: 3,
+            opacity: 1,
+            dashArray: "5"
+        };
+
+        // remove treksMachu if preloaded
+        function showAll(){
+            if(map.hasLayer(treksmachugeo2)){
+                map.removeLayer(treksmachugeo2);
+            }
+        }
+        // add listeners to treksmachu
+        function onEachFeature(feature, layer){
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight
+            });
+        }
  
- // Get CartoDB selection as GEOJSON and Add to Map
- $.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryInca, function(data) {
-    treksMachu = L.geoJson(data,{
-       style: trekStyle,
-       onEachFeature: onEachFeature
-    }).addTo(map);
-});
+        // load treksmachu from carto and assign oneachfeature
+        $.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryInca, function(data) {
+            treksMachu = L.geoJson(data,{
+                style: trekStyle,
+                onEachFeature: onEachFeature
+            }).addTo(map);
+        });
 
-// Add sanctuarymp.geojson
-var sanctMachu = null;
+        // Add sanctuarymp.geojson
+        var sanctMachu = null;
 
-// Database queries
+        // sql query for machupicchu santuary
+        var sqlQueryMachu = "SELECT * FROM sanctuarymp";
 
-var sqlQueryMachu = "SELECT * FROM sanctuarymp";
+        //sanctMP style
+        var sanctStyle = {
+            color: "#659D32",
+            fill: false,
+            weight: 7,
+            opacity: 0.7,
+            dashArray: "1"
+        };
 
-//sanctMP style
-var sanctStyle = {
- color: "#659D32",
- fill: false,
- weight: 7,
- opacity: 0.7,
- dashArray: "1"
-};
+        // remove if preloaded
+        function showAll(){
+            if(map.hasLayer(sanctuarymp)){
+                map.removeLayer(sanctuarymp);
+            }
+        }
+        // Get CartoDB selection as GEOJSON and Add to Map
+        $.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryMachu, function(data) {
+            sanctMachu = L.geoJson(data,{
+                style: sanctStyle,
+                onEachFeature: function (feature, layer) {
+                    layer.bindPopup(feature.properties.label);
+                    layer.cartodb_id=feature.properties.cartodb_id;
+                }
+            }).addTo(map);
+        });
+ 
+        // Custom Control Box  
+        var info = L.control();
 
-// Function to add sanctMachu
-function showAll(){
-  if(map.hasLayer(sanctuarymp)){
-      map.removeLayer(sanctuarymp);
-  }}
+        info.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+            this.update();
+            return this._div;
+        };
+
+        // method that we will use to update the control based on feature properties passed
+        info.update = function (props) {
+            this._div.innerHTML = '<h4>Trek Details:</h4>' +  (props ?
+                '<b>' + props.label + '</b><br /><br />' + props.length_mi + ' miles</sup>'
+            : 'Hover over a trek');
+        };
+
+        info.addTo(map);
   
-// Custom Control Box  
-var info = L.control();
+        //Run showAll function when doc loads
+        $( document ).ready(function() {
+            showAll();
+        });
 
-info.onAdd = function (map) {
-    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
-    this.update();
-    return this._div;
-};
-
-// method that we will use to update the control based on feature properties passed
-info.update = function (props) {
-    this._div.innerHTML = '<h4>Trek Details:</h4>' +  (props ?
-        '<b>' + props.label + '</b><br /><br />' + props.length_mi + ' miles</sup>'
-        : 'Hover over a trek');
-};
-
-info.addTo(map);
-  
- // Get CartoDB selection as GEOJSON and Add to Map
- $.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryMachu, function(data) {
-    sanctMachu = L.geoJson(data,{
-       style: sanctStyle,
-       onEachFeature: function (feature, layer) {
-          layer.bindPopup(feature.properties.label);
-          layer.cartodb_id=feature.properties.cartodb_id;
-       }
-    }).addTo(map);
-});
-
-
-
-//Run showAll function when doc loads
-$( document ).ready(function() {
-  showAll();
-  });
-
-</script>
+    </script>
 </body>
 </html>
-<!-- mapbox://styles/mapbox/outdoors-v9-->
