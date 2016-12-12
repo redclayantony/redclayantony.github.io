@@ -146,6 +146,11 @@
             info.update();
         }
 
+        //click listern zooms to feature
+        function zoomToFeature(e) {
+            map.fitBounds(e.target.getBounds());
+        }
+
         // sql query on treksmachgeo2
         var sqlQueryInca = "SELECT * FROM treksmachugeo2";
 
@@ -167,7 +172,8 @@
         function onEachFeature(feature, layer){
             layer.on({
                 mouseover: highlightFeature,
-                mouseout: resetHighlight
+                mouseout: resetHighlight,
+                click: zoomToFeature
             });
         }
  
