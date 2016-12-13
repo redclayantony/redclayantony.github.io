@@ -1,53 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-				<meta charset=utf-8 />
-				<title>Kay Pacha</title>
-				<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-				<script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
-				<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-				<!--Need this to make geojson load-->
-				<link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
-				<script src="js/leaflet.label.js"></script>
-				<link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
-				<!-- Bootstrap Core CSS -->
-				<link href="css/bootstrap.min.css" rel="stylesheet">
-				<!-- Custom CSS -->
-				<link href="css/custom.css" rel="stylesheet">
+    <meta charset=utf-8 />
+	<title>Ausangate</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href='https://api.mapbox.com/mapbox.js/v2.4.0/mapbox.css' rel='stylesheet' />
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/custom.css" rel="stylesheet">
+    <link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' />
+	<script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 
 <body>
- <div class="wrapper">
   <header>
-   <script src="js/leaflet.defaultextent.js"></script>
    <nav class="navbar navbar-inverse role="navigation">
         <div class="container">
-          <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    
                 </button>
                 <a class="navbar-brand" href=#>Kay Pacha</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <!--<li>
-                        <div class="dropdown">
-                          <button class="dropbtn">Regions</button>
-                          <div class="dropdown-content">
-                           <!--<a href="amazonas.html">Amazonas</a>
-                          </div>
-                         </div>
-                    </li>-->
                     <li>
                         <div class="dropdown">
                           <button class="dropbtn">Treks</button>
                           <div class="dropdown-content">
-                            <a href="ausangate.html">Ausangate</a>
+                            <a href=#>Ausangate</a>
                             <a href="incatrail.html">Machu Picchu</a>
                     </li>
                 </ul>
@@ -57,86 +40,144 @@
     </nav>
   </header>
 <div id='map'></div>
-<div id="credits">
-</div>
-</div> <!--wrapper-->
-<script>
-L.mapbox.accessToken = 'pk.eyJ1IjoicnVzc2x5b244IiwiYSI6IjBSaDVoeW8ifQ.UMzpeudvSJ3dHxAtKiakFg';
-var map = L.mapbox.map('map', null, {
-  maxZoom:18
-}).setView([-9.3651, -73.73], 5);
-var layers = {
-      Streets: L.mapbox.tileLayer('mapbox.streets'),
-      Outdoors: L.mapbox.styleLayer('mapbox://styles/russlyon8/ciwjh10yq000d2qo73t44eva0'),
-      Satellite: L.mapbox.styleLayer('mapbox://styles/russlyon8/cioowi3rs001rbnnnsmkskehw')
-  };
-
-  layers.Outdoors.addTo(map);
-  L.control.layers(layers).addTo(map);
-    
-var ausangateLayer = null;
-
-var sqlQueryAusangate = "SELECT * FROM ausangateTrek";
-
-// Set CartoDB Username
-var cartoUserName = "redclayantony";
-
-// Function to add treksMachu
-function showAll(){
-  if(map.hasLayer(ausangateTrek)){
-      map.removeLayer(ausangateTrek);
-  }}
-		
-$.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryAusangate, function(data) {
-    ausangateLayer = L.geoJson(data,{
-					  style: ausangateStyle,
-       pointToLayer: function (feature, latlng) {
-        var marker = L.marker(latlng,{icon: markerIcon});
-        return marker;
-          //layer.cartodb_id=feature.properties.cartodb_id;
-       }
-    }).addTo(map);
-				map.fitBounds(ausangateLayer.getBounds().pad(0.5));
-});
-function ausangateStyle() {
-    return {
-        weight: 3,
-        opacity: 1,
-        color: '#aa6e8e',
-        dashArray: '1'
+    <script>
+    L.mapbox.accessToken = 'pk.eyJ1IjoicnVzc2x5b244IiwiYSI6IjBSaDVoeW8ifQ.UMzpeudvSJ3dHxAtKiakFg';
+    var map = L.mapbox.map('map', null, {
+        maxZoom:18}).setView([-9.3651, -73.73], 5);
+    var layers = {
+        Streets: L.mapbox.tileLayer('mapbox.streets'),
+        Outdoors: L.mapbox.styleLayer('mapbox://styles/russlyon8/ciwjh10yq000d2qo73t44eva0'),
+        Satellite: L.mapbox.styleLayer('mapbox://styles/russlyon8/cioowi3rs001rbnnnsmkskehw')
     };
-}
 
-var ausangatePOILayer = null;
+    layers.Outdoors.addTo(map);
+    L.control.layers(layers).addTo(map);
+    
+    // Set CartoDB Username
+    var cartoUserName = "redclayantony";
+    
+    var ausangateLayer = null;
 
-var sqlQueryAusPOI = "SELECT * FROM ausangatepoi";
+    //event listener for mouseover   
+        function highlightFeature(e) {
+            var layer = e.target;
 
-$.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryAusPOI, function(data) {
-    ausangatePOILayer = L.geoJson(data,{
-											onEachFeature: function (feature, layer) {
-           layer.bindPopup(feature.properties.name);
-    }, pointToLayer: function (feature, latlng) {
-        var marker = L.marker(latlng,{icon: markerIcon});
-        return marker;
-          //layer.cartodb_id=feature.properties.cartodb_id;
-       }
-    }).addTo(map);
-});
-// marker Icon
-var markerIcon = L.icon({
-	iconUrl: 'icons/circle-11.svg',
-	iconSize: [8,8],
-	iconAnchor: [18,18],
-	popupAnchor: [0,-6]
-});
+                layer.setStyle({
+                    weight: 8,
+                    color: '#7D26CD',
+                    dashArray: ''
+                });
+
+            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                layer.bringToFront();
+            }
+            info.update(layer.feature.properties);
+            }
+
+        function resetHighlight(e) {
+            ausangateLayer.resetStyle(e.target);
+            info.update();
+        }
+
+        //click listern zooms to feature
+        function zoomToFeature(e) {
+            map.fitBounds(e.target.getBounds());
+        }
+
+        // sql query on ausangateLayer
+        var sqlQueryAusangate = "SELECT * FROM ausangateTrek";
+
+        //machuTrek line style
+        var ausangateStyle = {
+            color: "#aa6e8e",
+            weight: 3,
+            opacity: 1,
+            dashArray: "5"
+        };
+
+        // remove treksMachu if preloaded
+        function showAll(){
+        if(map.hasLayer(ausangateTrek)){
+            map.removeLayer(ausangateTrek);
+            }
+        }
+        // add listeners to treksmachu
+        function onEachFeature(feature, layer){
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight,
+                click: zoomToFeature
+            });
+        }
+        
+    // Function to add ausangateLayer
+	$.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryAusangate, function(data) {
+        ausangateLayer = L.geoJson(data,{
+		    style: ausangateStyle,
+            onEachFeature: onEachFeature
+            }).addTo(map);
+        map.fitBounds(ausangateLayer.getBounds());
+        });
+   
+   // Add trailheadcusco.geojson
+        var trailHead = null;
+        
+        // sql query on trailheads
+        var sqlQueryTH = "SELECT * FROM trailheadscusco";
+
+        // remove trailheads if already loaded
+        function showAll(){
+            if(map.hasLayer(trailheadscusco)){
+                map.removeLayer(trailheadscusco);
+            }}
+  
+       //archIcon
+        var trailheadIcon = L.icon({
+            iconUrl: 'icons/walker.svg',
+            iconSize: [14,14],
+            iconAnchor: [5,5],
+            popupanchor: [0,-3]
+        });
+
+        // Get CartoDB selection as GEOJSON and Add to Map
+        $.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryTH, function(data) {
+            trailHead = L.geoJson(data,{
+                onEachFeature: function (feature, layer) {
+                    layer.bindPopup(feature.properties.name);
+                }, pointToLayer: function (feature, latlng) {
+                    var marker = L.marker(latlng,{icon: trailheadIcon});
+                    return marker;
+                }
+            }).addTo(map);
+        }); 
+
+    var ausangatePOILayer = null;
+
+    var sqlQueryAusPOI = "SELECT * FROM ausangatepoi";
+
+    $.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryAusPOI, function(data) {
+        ausangatePOILayer = L.geoJson(data,{
+	        onEachFeature: function (feature, layer) {
+                layer.bindPopup(feature.properties.name);
+            }, pointToLayer: function (feature, latlng) {
+                var marker = L.marker(latlng,{icon: poiIcon});
+                return marker;
+               }
+        }).addTo(map);
+    });
+    // marker Icon
+    var poiIcon = L.icon({
+	    iconUrl: 'icons/mountain.svg',
+	    iconSize: [16,16],
+	    iconAnchor: [18,18],
+	    popupAnchor: [0,-6]
+    });
 				
-//Run showAll function when doc loads
-$( document ).ready(function() {
-  showAll();
-  });
+    //Run showAll function when doc loads
+    $( document ).ready(function() {
+        showAll();
+    });
 
-</script>
-</img>
+ </script>
 </body>
 </html>
-<!-- mapbox://styles/mapbox/outdoors-v9-->
