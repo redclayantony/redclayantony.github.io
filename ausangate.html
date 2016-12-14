@@ -85,7 +85,7 @@
         }
 
         // sql query on ausangateLayer
-        var sqlQueryAusangate = "SELECT * FROM ausangateTrek";
+        var sqlQueryAusangate = "SELECT * FROM ausangateTrek2";
 
         //machuTrek line style
         var ausangateStyle = {
@@ -172,6 +172,24 @@
 	    iconAnchor: [18,18],
 	    popupAnchor: [0,-6]
     });
+    
+    // Custom Control Box  
+        var info = L.control();
+
+        info.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+            this.update();
+            return this._div;
+        };
+
+        // method that we will use to update the control based on feature properties passed
+        info.update = function (props) {
+            this._div.innerHTML = '<h4>Trek Details:</h4>' +  (props ?
+                '<b>' + props.name + '</b><br /><br />' + props.dist_mil + ' miles</sup></br>' + props.dist_km + ' km</sup></br>' + props._desc
+            : 'Hover over a trek');
+        };
+
+        info.addTo(map);
 				
     //Run showAll function when doc loads
     $( document ).ready(function() {
