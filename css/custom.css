@@ -1,13 +1,19 @@
-.wrapper {
-	width: 100%;
-	margin: auto;
-}
-/* Body Styling properties example */
+#header {
+    height: 125px;
+    font-family: Garamond, ‘Book Antiqua’, Palatino, serif;
+    font-size: 75px;
+	color: white;
+    background-color: #4019B6;
+	box-shadow: 1px 1px 5px #888888;
+    padding: 0px 15px 20px 100px; /*top, right, bottom, left */
+}            
+/* Body Styling properties */
 body {
 	font-family: Garamond, ‘Book Antiqua’, Palatino, serif;
 	font-size: 16px;
-	padding: 0;
+	height: calc(100% - 125px);
 	margin: 0;
+	padding: 0;
 }
 .mapInstructions {
 	background-color: grey;
@@ -29,18 +35,10 @@ body {
     margin-left: auto;
 	margin-right: auto;
 }
-
-img {
-	width: 50%;
-	max-width: 100%;
-    height: auto;
-	display: block;
-    margin-left: auto;
-    margin-right: auto
-}
-
 p {
 	padding: 10px;
+	font-family: Garamond, ‘Book Antiqua’, Palatino, serif;
+	font-size: 24px;
 }
 h1 {
 	font-style: oblique;
@@ -48,93 +46,18 @@ h1 {
 }
 
 h3 {
-	font-family: 'Franklin Gothic', sans-serif;
-	font-size:24px;
+	font-family: Garamond, ‘Book Antiqua’, Palatino, serif;
+	font-size: 24px;
 }
-
+h4 {
+	font-family: Garamond, ‘Book Antiqua’, Palatino, serif;
+}
 a {
-	color: #C26941;
+	color: black;
+	font-family: Garamond, ‘Book Antiqua’, Palatino, serif;
 }
 
-a:hover {
-	color: #333333;
-}
 
-.navbar {
-	position: relative;
-}
-.navbar-fixed-top {
-	height: 75px;
-	display: inherit;
-}
-/* title color*/
-.navbar-inverse .navbar-brand {
-    color: #FBE7D7;
-    font-size: 48px;
-	padding: 24px !important;
-}
-/* nav bar background*/
-.navbar-inverse {
-	background-color: #FF0000;
-	border-color: #FF0000;
-	-webkit-box-shadow: 1px 1px 5px #000;
-}
-
-/* nav bar list not in dropdown*/
-.navbar-inverse .navbar-nav>li>a {
-	color: #FBE7D7;
-}
-/* nav bar list not in dropdown hover*/
-.navbar-inverse .navbar-nav>li>a:hover {
-	color: white;
-}
-
-/* Dropdown Button */
-.dropbtn {
-    background-color: #FF0000;
-    color: #FBE7D7;
-    padding: 16px;
-    font-size: 28px;
-    border: none;
-    cursor: pointer;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-    position: relative;
-    display: inline-block;
-	z-index:9999999;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #FF0000;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-    color: #FBE7D7;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #7F2626}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-    background-color: #7F2626;
-}
 
 .leaflet-control-defaultextent {
 
@@ -150,8 +73,9 @@ a:hover {
 }
 
 .info {
-    padding: 6px 8px;
-    font: 16px Arial, Helvetica, sans-serif;
+    padding: 20px 8px;
+    font-family: Garamond, ‘Book Antiqua’, Palatino, serif;
+	font-size: 24px;
     background: white;
     background: rgba(255,255,255,0.8);
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
@@ -160,5 +84,5 @@ a:hover {
 .info h4 {
     margin: 0 0 5px;
     color: #777;
+	font-size: 48px;
 }
-

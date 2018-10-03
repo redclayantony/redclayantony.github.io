@@ -1,218 +1,287 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Russell Lyon</title>
-
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/custom2.css" rel="stylesheet">
-    <link href="css/1-col-portfolio.css" rel="stylesheet">
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-
+    <meta charset="utf-8"/>
+    <title>CuscoTrek</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link href="css/bootstrap.min.css" rel="stylesheet"><!-- Bootstrap Core CSS -->
+    <link href="css/custom.css" rel="stylesheet"><!-- Custom CSS -->
+	<link href="css/leaflet-sidebar.css" rel="stylesheet"><!-- LeafletSidebarCSS -->
+    <link href="https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css" rel="stylesheet"/>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script><!--Need this to make geojson load-->
+	<script src="js/leaflet-sidebar.js"></script>
 </head>
 
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="index.html">Home</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <div class="dropdown">
-                          <button class="dropbtn">CV/Training</button>
-                          <div class="dropdown-content">
-                            <a href="resume.html">CV</a>
-                            <a href="training.html" class="">Training</a>
-                            <!--<a href="junin.html">Junin</a>-->
-                          </div>
-                         </div>
-                    </li>
-                    <li>
-                        <div class="dropdown">
-                          <button class="dropbtn">Web Maps</button>
-                          <div class="dropdown-content">
-                            <a href="incatrail.html">Machu Picchu</a>
-                            <a href="ausangate.html">Ausangate</a>
-                            <a href="https://redclayantony.carto.com/viz/43eec686-bc27-11e6-b159-0e98b61680bf/public_map" class=""> MP Chloropleth</a>
-                          </div>
-                         </div>
-                    </li>
-                    <li>
-                        <a href="mapsA.html">Mapfolio</a>
-                    </li>
-                    <li>
-                        <a href="about.html">About Me</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+<div id="header">Trek Cusco</div>
+<div id="sidebar" class="sidebar collapsed">
+        <div class="sidebar-tabs">
+            <ul role="tablist">
+                <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+                <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
+                <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
+                <li><a href="https://github.com/redclayantony/redclayantony.github.io" role="tab" target="_blank"><i class="fa fa-github"></i></a></li>
+            </ul>
+
+            <ul role="tablist">
+                <li><a href="#settings" role="tab"><i class="fa fa-gear"></i></a></li>
+            </ul>
         </div>
-        <!-- /.container -->
-    </nav>
 
-    <!-- Page Content -->
-    <div class="container">
-
-        <!-- Page Heading -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Russell Lyon
-                    <small>GIS Analyst & Developer</small>
+        <!-- Tab panes -->
+        <div class="sidebar-content">
+            <div class="sidebar-pane" id="home">
+                <h1 class="sidebar-header">
+                    Select A Region
+                    <span class="sidebar-close"><i class="fa fa-caret-left"></i></span>
                 </h1>
+				<p class="lorem"><a onclick="gotocountry('mp')"> Machu Picchu</a></p>
+				<p class="lorem"><a onclick="gotocountry('sk')"> Salkantay</a></p>
+                <p class="lorem"><a onclick="gotocountry('lr')"> Lares</a></p>
+                <p class="lorem"><a onclick="gotocountry('cc')"> Cusco City</a></p>
+                <p class="lorem"><a onclick="gotocountry('az')"> Ausangate</a></p>
+				<p class="lorem"><a onclick="gotocountry('cq')"> Choquequirao</a></p>
+            </div>
+
+            <div class="sidebar-pane" id="profile">
+                <h1 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            </div>
+
+            <div class="sidebar-pane" id="messages">
+                <h1 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
+            </div>
+
+            <div class="sidebar-pane" id="settings">
+                <h1 class="sidebar-header">Settings<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
             </div>
         </div>
-        <!-- /.row -->
+   </div>
+<div id="map"></div>
+    <script>
+        L.mapbox.accessToken = 'pk.eyJ1IjoicnVzc2x5b244IiwiYSI6IjBSaDVoeW8ifQ.UMzpeudvSJ3dHxAtKiakFg';
+        var map = L.mapbox.map('map', null, {
+			maxZoom:18,
+			zoomControl: false}).setView([-13.163, -72.545], 15);
+        var layers = {
+            Streets: L.mapbox.tileLayer('mapbox.streets'),
+            Outdoors: L.mapbox.styleLayer('mapbox://styles/russlyon8/ciwjh10yq000d2qo73t44eva0'),
+            Satellite: L.mapbox.styleLayer('mapbox://styles/russlyon8/cioowi3rs001rbnnnsmkskehw')
+        };
+
+        layers.Outdoors.addTo(map);
+        L.control.layers(layers).addTo(map);
+        //add zoom control with your options
+		L.control.zoom({
+     		position:'topright'
+		}).addTo(map);
+        // Set CartoDB Username
+        var cartoUserName = "redclayantony";
         
-        <!-- Project 1 -->
-        <div class="row">
-            <div class="col-md-7">
-                <a href="#">
-                    <img class="img-responsive" src="img/usPop.jpg" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3>Qgis2threejs plugin</h3>
-                <h4>US Total Population per County</h4>
-                <p>The Qgis2threejs plugin is a quick way to create a really cool 3D data visualization and it is super easy to use. For this project I downloaded Total Population/County data using the US Census Bureau's <a href="http://factfinder.census.gov/faces/nav/jsf/pages/searchresults.xhtml?refresh=t"> American Fact Finder</a>, then joined it to a US County shapefile and classified it based on population. Once that was ready, I opened the plugin and set the DEM to a flat plane and extruded the county polygons based on the total population field and ran the tool to create the 3D map. Use the link below to open the interactive map.</p>
-                <a class="btn btn-primary" href="usPop.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
-            </div>
-        </div>
-        <!-- /.row -->
+        // Add archaeologicalsites geojson from Carto
+        var archSite = null;
+
+        // sql query call on archaeological sites
+        var sqlQueryArch = "SELECT * FROM archSiteMachu";
+
+        // Set CartoDB Username
+        var cartoUserName = "redclayantony";
+
+        // remove archsites if already loaded
+        function showAll(){
+         if(map.hasLayer(archSiteMachu)){
+           map.removeLayer(archSiteMachu);
+        }}
+  
+         //archIcon style
+        var archIcon = L.icon({
+            iconUrl: 'icons/archIcon2.svg',
+            iconSize: [28,28],
+            iconAnchor: [5,5],
+            popupanchor: [0,-3]
+        });
+
+        // Get CartoDB selection as GEOJSON and Add to Map
+        $.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryArch, function(data) {
+            archSite = L.geoJson(data,{
+                onEachFeature: function (feature, layer) {
+                   layer.bindPopup(feature.properties.name);
+                }, pointToLayer: function (feature, latlng) {
+                    var marker = L.marker(latlng,{icon: archIcon});
+                    return marker;
+                }
+            }).addTo(map);
+        });
+
+        // Add trailheadcusco.geojson
+        var trailHead = null;
         
-        <hr>
+        // sql query on trailheads
+        var sqlQueryTH = "SELECT * FROM trailheadscusco";
+
+        // remove trailheads if already loaded
+        function showAll(){
+            if(map.hasLayer(trailheadscusco)){
+                map.removeLayer(trailheadscusco);
+            }}
+  
+       //archIcon
+        var trailheadIcon = L.icon({
+            iconUrl: 'icons/walker.svg',
+            iconSize: [14,14],
+            iconAnchor: [5,5],
+            popupanchor: [0,-3]
+        });
+
+        // Get CartoDB selection as GEOJSON and Add to Map
+        $.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryTH, function(data) {
+            trailHead = L.geoJson(data,{
+                onEachFeature: function (feature, layer) {
+                    layer.bindPopup(feature.properties.name);
+                }, pointToLayer: function (feature, latlng) {
+                    var marker = L.marker(latlng,{icon: trailheadIcon});
+                    return marker;
+                }
+            }).addTo(map);
+        }); 
+  
+        // Add treksMachuGeo2.geojson
+        var treksMachu = null;
+            
+        //event listener for mouseover   
+        function highlightFeature(e) {
+            var layer = e.target;
+
+                layer.setStyle({
+                    weight: 8,
+                    color: '#7D26CD',
+                    dashArray: ''
+                });
+
+            if (!L.Browser.ie && !L.Browser.opera && !L.Browser.edge) {
+                layer.bringToFront();
+            }
+            info.update(layer.feature.properties);
+            }
+
+        function resetHighlight(e) {
+            treksMachu.resetStyle(e.target);
+            info.update();
+        }
+
+        //click listen zooms to feature
+        function zoomToFeature(e) {
+            map.fitBounds(e.target.getBounds());
+        }
+
+        // sql query on treksmachgeo2
+        var sqlQueryInca = "SELECT * FROM treksmachugeo2";
+
+        //machuTrek line style
+        var trekStyle = {
+            color: "#aa6e8e",
+            weight: 3,
+            opacity: 1,
+            dashArray: "5"
+        };
+
+        // remove treksMachu if preloaded
+        function showAll(){
+            if(map.hasLayer(treksmachugeo2)){
+                map.removeLayer(treksmachugeo2);
+            }
+        }
+        // add listeners to treksmachu
+        function onEachFeature(feature, layer){
+            layer.on({
+                mouseover: highlightFeature,
+                mouseout: resetHighlight,
+                click: zoomToFeature
+            });
+        }
+ 
+        // load treksmachu from carto and assign oneachfeature
+        $.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryInca, function(data) {
+            treksMachu = L.geoJson(data,{
+                style: trekStyle,
+                onEachFeature: onEachFeature
+            }).addTo(map);
+        });
+
+        // Add sanctuarymp.geojson
+        var sanctMachu = null;
+
+        // sql query for machupicchu santuary
+        var sqlQueryMachu = "SELECT * FROM sanctuarymp";
+
+        //sanctMP style
+        var sanctStyle = {
+            color: "#659D32",
+            fill: false,
+            weight: 3,
+            opacity: 0.7,
+            dashArray: "1"
+        };
+
+        // remove if preloaded
+        function showAll(){
+            if(map.hasLayer(sanctuarymp)){
+                map.removeLayer(sanctuarymp);
+            }
+        }
+        // Get CartoDB selection as GEOJSON and Add to Map
+        $.getJSON("https://"+cartoUserName+".carto.com/api/v2/sql?format=GeoJSON&q="+sqlQueryMachu, function(data) {
+            sanctMachu = L.geoJson(data,{
+                style: sanctStyle,
+                onEachFeature: function (feature, layer) {
+                    layer.bindPopup(feature.properties.label);
+                    layer.cartodb_id=feature.properties.cartodb_id;
+                }
+            }).addTo(map);
+        });
+ 
+        // Custom Control Box  
+        var info = L.control();
+
+        info.onAdd = function (map) {
+            this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+            this.update();
+            return this._div;
+        };
+
+        // method that we will use to update the control based on feature properties passed
+        info.update = function (props) {
+            this._div.innerHTML = '<h3>Trek Details: </h3>' +  (props ?
+                '<b>' + props.label + '</b><br /><br />' +"Approx "+ props.length_mi + ' miles</sup>'
+            : '(Hover to see details)');
+        };
+
+        info.addTo(map);
+  
+        //Run showAll function when doc loads
+        $( document ).ready(function() {
+            showAll();
+        });
+		var sidebar = L.control.sidebar('sidebar').addTo(map);
+		var gotocountry = function(c){
+        // set new view 
+         if(c=='mp')
+         map.setView(new L.LatLng(-13.163, -72.545), 15);
+	     if(c=='az')
+         map.setView(new L.LatLng(-13.79, -71.23), 12);
+         if(c=='sk')
+         map.setView(new L.LatLng(-13.35, -72.55), 11.5);
+		 if(c=='lr')
+         map.setView(new L.LatLng(-13.22, -72.0), 13);
+		 if(c=='cc')
+         map.setView(new L.LatLng(-13.53, -71.97), 14);
+		 if(c=='cq')
+         map.setView(new L.LatLng(-13.425, -72.89), 13);
+         return;
         
-        <!-- Project 2 -->
-        <div class="row">
-            <div class="col-md-7">
-                <a href="#">
-                    <img class="img-responsive" src="img/BocaChicaLidar7.png" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3>LiDAR Processing</h3>
-                <h4>Boca Chica, NASKW</h4>
-                <p>One of the most important things to be aware of when working near an airfield is the height of the buildings and structures on or near the flight line. There are regulations on obstruction heights of the features that are within a certain distance of the airfield that if aren’t observed can lead to a shut down of operations pretty quick. I have used LiDAR data before...</p>
-                <a class="btn btn-primary" href="lidar.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-
-        <!-- Project 3 -->
-        <div class="row">
-            <div class="col-md-7">
-                <a href="#">
-                    <img class="img-responsive" src="img/Georeferencing.png" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3>Georeferencing Scanned CAD Drawings</h3>
-                <h4>Mole Pier, Key West</h4>
-                <p>One of the recent projects I worked on was updating of all underground utilities at the Mole Pier in Key West. The Mole Pier is one of the deepest ports in the city where large warships and the occasional cruise ship can dock.</p>
-                <a class="btn btn-primary" href="georeference.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Project 4 -->
-        <div class="row">
-            <div class="col-md-7">
-                <a href="#">
-                    <img class="img-responsive" src="img/qgistrain.jpg" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3>SERNANP QGIS Training Workshop</h3>
-                <h4>Lima & Cusco, Peru</h4>
-                <p>For most of 2015 I had the unique opportunity to work at Peru’s <a href="http://www.sernanp.gob.pe/">Servicio Nacional de Áreas Protegidas por el Estado (SERNANP)</a> office in downtown Lima. My main duties as an Environmental Information Management Specialist involved helping design a geodatabase for storing and distributing SERNANP’s GIS data.</p>
-                <a class="btn btn-primary" href="qgis_train.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Project 5 -->
-        <div class="row">
-
-            <div class="col-md-7">
-                <a href="#">
-                    <img class="img-responsive" src="img/thesis.png" alt="">
-                </a>
-            </div>
-            <div class="col-md-5">
-                <h3>Hydrologic Modeling with AGWA</h3>
-                <h4>Tucson, Arizona</h4>
-                <p>For four years I worked as a Research Associate with the University of Arizona and the Agricultural Research Station in Tucson, Arizona. My job was to use the <a href= "http://www.tucson.ars.ag.gov/agwa/">Automated Geospatial Watershed Assessment (AGWA)</a> tool to run hydrologic simulations on various watershed in four distinct desert ecosystems in the Southwest US.</p>
-                <a class="btn btn-primary" href="thesis.html">View Project <span class="glyphicon glyphicon-chevron-right"></span></a>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Pagination -->
-        <div class="row text-center">
-            <div class="col-lg-12">
-                <ul class="pagination">
-                    <li class="active">
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="page2.html">2</a>
-                    </li>
-                    <li>
-                        <a href="page2.html">&raquo;</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Footer -->
-        <footer>
-            <div class="row">
-                <div class="col-lg-12">
-                    <p>Copyright &copy; Russell Lyon 2016</p>
-                </div>
-            </div>
-            <!-- /.row -->
-        </footer>
-
-    </div>
-    <!-- /.container -->
-
-    <!-- jQuery -->
-    <script src="js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
-
+        
+      };
+    </script>
 </body>
-
 </html>
