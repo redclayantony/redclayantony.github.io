@@ -212,3 +212,4 @@ L.Control.Sidebar = L.Control.extend(/** @lends L.Control.Sidebar.prototype */ {
 L.control.sidebar = function (id, options) {
     return new L.Control.Sidebar(id, options);
 };
+
