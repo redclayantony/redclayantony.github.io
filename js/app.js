@@ -204,11 +204,11 @@ L.mapbox.accessToken = 'pk.eyJ1IjoicnVzc2x5b244IiwiYSI6IjBSaDVoeW8ifQ.UMzpeudvSJ
          if(c=='mp')
          map.setView(new L.LatLng(-13.163, -72.545), 15);
 	     if(c=='az')
-         map.setView(new L.LatLng(-13.79, -71.23), 12);
+         map.setView(new L.LatLng(-13.755, -71.24), 13);
          if(c=='sk')
          map.setView(new L.LatLng(-13.35, -72.55), 11.5);
 		 if(c=='lr')
-         map.setView(new L.LatLng(-13.22, -72.0), 13);
+         map.setView(new L.LatLng(-13.22, -72.08), 12);
 		 if(c=='cc')
          map.setView(new L.LatLng(-13.53, -71.97), 14);
 		 if(c=='cq')
